@@ -14,8 +14,8 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("description");
-            $table->enum("status", ["active", "inactive"]);
+            $table->string('description');
+            $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });
     }
