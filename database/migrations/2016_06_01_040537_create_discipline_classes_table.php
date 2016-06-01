@@ -18,6 +18,7 @@ class CreateDisciplineClassesTable extends Migration
             $table->unsignedInteger('teacher_id');
             $table->unsignedSmallInteger('year');
             $table->enum('half', [1, 2]);
+            $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
 
             $table->foreign('discipline_id')->references('id')->on('disciplines');
