@@ -16,6 +16,7 @@ class CreateDisciplinesTable extends Migration
             $table->increments('id');
             $table->string("description");
             $table->json("requirements");
+            $table->enum("status", ["active", "inactive"]);
             $table->timestamps();
         });
     }
