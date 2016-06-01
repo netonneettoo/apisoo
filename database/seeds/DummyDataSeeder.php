@@ -15,8 +15,14 @@ class DummyDataSeeder extends Seeder
         $year = date('Y');
         $registrationMin = intval($year . $half) * 100000;
 
-        $walterUser = \App\User::create(['name' => 'José Walter de Souza Neto', 'email' => 'netonneettoo@gmail.com', 'password' => 'default']);
-        $walterStudent = \App\Student::create(['user_id' => $walterUser->getAttribute('id'), 'registration' => rand($registrationMin, $registrationMin + 99999), 'status' => 'active']);
+        $walterUser = \App\User::create(['name' => 'José Walter de Souza Neto', 'email' => 'netonneettoo@gmail.com', 'password' => bcrypt('default')]);
+        $walterStudent = \App\Student::create(['user_id' => $walterUser->getAttribute('id'), 'registration' => 2012207180, 'status' => 'active']);
+
+        $testUser = \App\User::create(['name' => 'Test User', 'email' => 'jw_netoa@hotmail.com', 'password' => bcrypt('default')]);
+        $testStudent = \App\Student::create(['user_id' => $testUser->getAttribute('id'), 'registration' => rand($registrationMin, $registrationMin + 99999), 'status' => 'active']);
+
+        $alexandreUser = \App\User::create(['name' => 'Alexandre', 'email' => 'alexandre@facevol.com.br', 'password' => bcrypt('default')]);
+        $alexandreTeacher = \App\Teacher::create(['user_id' => $alexandreUser->getAttribute('id'), 'cpf' => '000.000.000-00', 'status' => 'active']);
 
         $administration = \App\Course::create(['description' => 'Administração', 'status' => 'active']);
         $systemsForInternet = \App\Course::create(['description' => 'Sistemas para Internet', 'status' => 'active']);
@@ -78,72 +84,74 @@ class DummyDataSeeder extends Seeder
             $DISCIPLINE_34, $DISCIPLINE_35, $DISCIPLINE_36, $DISCIPLINE_37, $DISCIPLINE_38, $DISCIPLINE_39, $DISCIPLINE_40]);
 
         // sistemas para internet
-        $DISCIPLINE_42 = \App\Discipline::create(['description' => 'Fundamentos de Computação e Arquitetura de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_43 = \App\Discipline::create(['description' => 'Lógica de Programação', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_44 = \App\Discipline::create(['description' => 'Redes de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_45 = \App\Discipline::create(['description' => 'Design e Programação de Interfaces Para Web', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_46 = \App\Discipline::create(['description' => 'Matemática Aplicada à Computação', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_47 = \App\Discipline::create(['description' => 'Banco de Dados', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_41 = \App\Discipline::create(['description' => 'Fundamentos de Computação e Arquitetura de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_42 = \App\Discipline::create(['description' => 'Lógica de Programação', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_43 = \App\Discipline::create(['description' => 'Redes de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_44 = \App\Discipline::create(['description' => 'Design e Programação de Interfaces Para Web', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_45 = \App\Discipline::create(['description' => 'Matemática Aplicada à Computação', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_46 = \App\Discipline::create(['description' => 'Banco de Dados', 'requirements' => json_encode([]), 'status' => 'active']);
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Metodologia do Trabalho Científico', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_48 = \App\Discipline::create(['description' => 'Sistemas Operacionais', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_49 = \App\Discipline::create(['description' => 'Linguagem de Programação Orientada a Objetos I', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_50 = \App\Discipline::create(['description' => 'Introdução aos Sistemas de Informação', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_51 = \App\Discipline::create(['description' => 'Inglês Técnico', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_52 = \App\Discipline::create(['description' => 'Engenharia de Software', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_53 = \App\Discipline::create(['description' => 'Linguagem de Programação Orientada a Objetos II', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_54 = \App\Discipline::create(['description' => 'Programação para Web I', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_55 = \App\Discipline::create(['description' => 'Modelagem de Sistemas de Banco de Dados para Web', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_47 = \App\Discipline::create(['description' => 'Sistemas Operacionais', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_48 = \App\Discipline::create(['description' => 'Linguagem de Programação Orientada a Objetos I', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_49 = \App\Discipline::create(['description' => 'Introdução aos Sistemas de Informação', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_50 = \App\Discipline::create(['description' => 'Inglês Técnico', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_51 = \App\Discipline::create(['description' => 'Engenharia de Software', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_52 = \App\Discipline::create(['description' => 'Linguagem de Programação Orientada a Objetos II', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_53 = \App\Discipline::create(['description' => 'Programação para Web I', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_54 = \App\Discipline::create(['description' => 'Modelagem de Sistemas de Banco de Dados para Web', 'requirements' => json_encode([]), 'status' => 'active']);
 //        Formação Parcial: Qualificação Profissional de Nível Tecnológico como Programador de Aplicações para a WEB
-        $DISCIPLINE_56 = \App\Discipline::create(['description' => 'Arquiteturas WEB e Sistemas Distribuídos', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_57 = \App\Discipline::create(['description' => 'Desenvolvimento de Aplicações Para Dispositivos Móveis', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_58 = \App\Discipline::create(['description' => 'Análise, Projeto e Implementação de Sistemas Orientados a Objetos', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_59 = \App\Discipline::create(['description' => 'Programação para Web II', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_60 = \App\Discipline::create(['description' => 'Gerenciamento de Projetos', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_55 = \App\Discipline::create(['description' => 'Arquiteturas WEB e Sistemas Distribuídos', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_56 = \App\Discipline::create(['description' => 'Desenvolvimento de Aplicações Para Dispositivos Móveis', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_57 = \App\Discipline::create(['description' => 'Análise, Projeto e Implementação de Sistemas Orientados a Objetos', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_58 = \App\Discipline::create(['description' => 'Programação para Web II', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_59 = \App\Discipline::create(['description' => 'Gerenciamento de Projetos', 'requirements' => json_encode([]), 'status' => 'active']);
 //        Formação Parcial: Qualificação Profissional de Nível Tecnológico como Projetista de Aplicações para a WEB
-        $DISCIPLINE_61 = \App\Discipline::create(['description' => 'Segurança e Auditoria de Sistemas na Web', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_62 = \App\Discipline::create(['description' => 'Arquitetura de Sistemas Web e Padrões de Projeto', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_63 = \App\Discipline::create(['description' => 'Web Services e Frameworks Para Aplicações Web', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_64 = \App\Discipline::create(['description' => 'Empreendedorismo', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_65 = \App\Discipline::create(['description' => 'Projeto Prático em Análise e Desenvolvimento Web', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_60 = \App\Discipline::create(['description' => 'Segurança e Auditoria de Sistemas na Web', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_61 = \App\Discipline::create(['description' => 'Arquitetura de Sistemas Web e Padrões de Projeto', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_62 = \App\Discipline::create(['description' => 'Web Services e Frameworks Para Aplicações Web', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_63 = \App\Discipline::create(['description' => 'Empreendedorismo', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_64 = \App\Discipline::create(['description' => 'Projeto Prático em Análise e Desenvolvimento Web', 'requirements' => json_encode([]), 'status' => 'active']);
 
-        $systemsForInternet->addDisciplines([$DISCIPLINE_08, $DISCIPLINE_42, $DISCIPLINE_43, $DISCIPLINE_44, $DISCIPLINE_45,
-            $DISCIPLINE_46, $DISCIPLINE_47, $DISCIPLINE_48, $DISCIPLINE_49, $DISCIPLINE_50, $DISCIPLINE_51, $DISCIPLINE_52,
-            $DISCIPLINE_53, $DISCIPLINE_54, $DISCIPLINE_55, $DISCIPLINE_56, $DISCIPLINE_57, $DISCIPLINE_58, $DISCIPLINE_59,
-            $DISCIPLINE_60, $DISCIPLINE_61, $DISCIPLINE_62, $DISCIPLINE_63, $DISCIPLINE_64, $DISCIPLINE_65]);
+        $systemsForInternet->addDisciplines([$DISCIPLINE_08, $DISCIPLINE_41, $DISCIPLINE_42, $DISCIPLINE_43, $DISCIPLINE_44,
+            $DISCIPLINE_45, $DISCIPLINE_46, $DISCIPLINE_47, $DISCIPLINE_48, $DISCIPLINE_49, $DISCIPLINE_50, $DISCIPLINE_51,
+            $DISCIPLINE_52, $DISCIPLINE_53, $DISCIPLINE_54, $DISCIPLINE_55, $DISCIPLINE_56, $DISCIPLINE_57, $DISCIPLINE_58,
+            $DISCIPLINE_59, $DISCIPLINE_60, $DISCIPLINE_61, $DISCIPLINE_62, $DISCIPLINE_63, $DISCIPLINE_64]);
 
         // redes de computadores
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Fundamentos da Computação e Arquitetura de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_66 = \App\Discipline::create(['description' => 'Tecnologias de Sistemas Proprietários', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_67 = \App\Discipline::create(['description' => 'Tecnologias de Sistemas Abertos', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_65 = \App\Discipline::create(['description' => 'Tecnologias de Sistemas Proprietários', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_66 = \App\Discipline::create(['description' => 'Tecnologias de Sistemas Abertos', 'requirements' => json_encode([]), 'status' => 'active']);
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Redes de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Lógica de Programação', 'requirements' => json_encode([]), 'status' => 'active']);
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Metodologia do Trabalho Científico', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_68 = \App\Discipline::create(['description' => 'Servidores de Redes com Sistemas Proprietários', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_69 = \App\Discipline::create(['description' => 'Servidores de Redes com Sistemas Abertos', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_70 = \App\Discipline::create(['description' => 'Roteamento de Redes de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_67 = \App\Discipline::create(['description' => 'Servidores de Redes com Sistemas Proprietários', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_68 = \App\Discipline::create(['description' => 'Servidores de Redes com Sistemas Abertos', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_69 = \App\Discipline::create(['description' => 'Roteamento de Redes de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Banco de Dados', 'requirements' => json_encode([]), 'status' => 'active']);
 //        Formação Parcial: Qualificação Profissional de Nível Tecnológico como Administrador de Sistemas
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Inglês Técnico', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_71 = \App\Discipline::create(['description' => 'Administração de Redes com Sistemas Proprietários', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_72 = \App\Discipline::create(['description' => 'Administração de Redes com Sistemas Abertos', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_73 = \App\Discipline::create(['description' => 'Switching de Redes de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_70 = \App\Discipline::create(['description' => 'Administração de Redes com Sistemas Proprietários', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_71 = \App\Discipline::create(['description' => 'Administração de Redes com Sistemas Abertos', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_72 = \App\Discipline::create(['description' => 'Switching de Redes de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Arquiteturas WEB e Sistemas Distribuídos', 'requirements' => json_encode([]), 'status' => 'active']);
 //        Formação Parcial: Qualificação Profissional de Nível Tecnológico como Administrador de Redes Locais de Computadores
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Gerenciamento de Projetos', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_74 = \App\Discipline::create(['description' => 'Soluções de Segurança de Redes com Sistemas Proprietários', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_75 = \App\Discipline::create(['description' => 'Soluções de Segurança de Redes com Sistemas Abertos', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_76 = \App\Discipline::create(['description' => 'Redes de Longa Distância – WAN’s', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_77 = \App\Discipline::create(['description' => 'Redes sem fio', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_73 = \App\Discipline::create(['description' => 'Soluções de Segurança de Redes com Sistemas Proprietários', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_74 = \App\Discipline::create(['description' => 'Soluções de Segurança de Redes com Sistemas Abertos', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_75 = \App\Discipline::create(['description' => 'Redes de Longa Distância – WAN’s', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_76 = \App\Discipline::create(['description' => 'Redes sem fio', 'requirements' => json_encode([]), 'status' => 'active']);
 //        Formação Parcial: Qualificação Profissional de Nível Tecnológico como Analista de Segurança de Redes de Computadores
-        $DISCIPLINE_78 = \App\Discipline::create(['description' => 'Implementação de Projetos de Tecnologia da Informação', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_79 = \App\Discipline::create(['description' => 'Projeto Prático em Redes de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_80 = \App\Discipline::create(['description' => 'Soluções Avançadas em Plataforma Aberta', 'requirements' => json_encode([]), 'status' => 'active']);
-        $DISCIPLINE_81 = \App\Discipline::create(['description' => 'Redes de Alta Velocidade', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_77 = \App\Discipline::create(['description' => 'Implementação de Projetos de Tecnologia da Informação', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_78 = \App\Discipline::create(['description' => 'Projeto Prático em Redes de Computadores', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_79 = \App\Discipline::create(['description' => 'Soluções Avançadas em Plataforma Aberta', 'requirements' => json_encode([]), 'status' => 'active']);
+        $DISCIPLINE_80 = \App\Discipline::create(['description' => 'Redes de Alta Velocidade', 'requirements' => json_encode([]), 'status' => 'active']);
 //        $DISCIPLINE_ = \App\Discipline::create(['description' => 'Empreendedorismo', 'requirements' => json_encode([]), 'status' => 'active']);
 
-        $networkOfComputers->addDisciplines([$DISCIPLINE_42, $DISCIPLINE_43, $DISCIPLINE_44, $DISCIPLINE_47, $DISCIPLINE_51,
-            $DISCIPLINE_56, $DISCIPLINE_60, $DISCIPLINE_64, $DISCIPLINE_66, $DISCIPLINE_67, $DISCIPLINE_68, $DISCIPLINE_69,
+        $networkOfComputers->addDisciplines([$DISCIPLINE_41, $DISCIPLINE_42, $DISCIPLINE_43, $DISCIPLINE_46, $DISCIPLINE_50,
+            $DISCIPLINE_55, $DISCIPLINE_59, $DISCIPLINE_65, $DISCIPLINE_66, $DISCIPLINE_67, $DISCIPLINE_68, $DISCIPLINE_69,
             $DISCIPLINE_70, $DISCIPLINE_71, $DISCIPLINE_72, $DISCIPLINE_73, $DISCIPLINE_74, $DISCIPLINE_75, $DISCIPLINE_76,
-            $DISCIPLINE_77, $DISCIPLINE_78, $DISCIPLINE_79, $DISCIPLINE_80, $DISCIPLINE_81]);
+            $DISCIPLINE_77, $DISCIPLINE_78, $DISCIPLINE_79, $DISCIPLINE_80]);
+
+        //
     }
 }
