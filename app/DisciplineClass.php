@@ -28,13 +28,14 @@ class DisciplineClass extends Model
 
     public static function addHistoryToWalter(Student $student) {
         $histories = [
-            ['year' => 2012, 'half' => 2, 'disciplines' => [41, 45, 43]],
-            ['year' => 2013, 'half' => 1, 'disciplines' => [46, 42, 47]],
-            ['year' => 2013, 'half' => 2, 'disciplines' => [44, 53, 62]],
-            ['year' => 2014, 'half' => 1, 'disciplines' => [51, 48, 54]],
-            ['year' => 2014, 'half' => 2, 'disciplines' => [50, 52, 58]],
-            ['year' => 2015, 'half' => 1, 'disciplines' => [56, 49, 8]],
-            ['year' => 2015, 'half' => 2, 'disciplines' => [57, 64, 60]]
+            ['year' => 2012, 'half' => 2, 'disciplines' => [1,5,3]],
+            ['year' => 2013, 'half' => 1, 'disciplines' => [6,2,8]],
+            ['year' => 2013, 'half' => 2, 'disciplines' => [4,14,23]],
+            ['year' => 2014, 'half' => 1, 'disciplines' => [12,9,15]],
+            ['year' => 2014, 'half' => 2, 'disciplines' => [11,13,19]],
+            ['year' => 2015, 'half' => 1, 'disciplines' => [17,10,7]],
+            ['year' => 2015, 'half' => 2, 'disciplines' => [18,25,21]]
+            //18,22,16,20,24
         ];
 
         $teachers = Teacher::all()->toArray();
