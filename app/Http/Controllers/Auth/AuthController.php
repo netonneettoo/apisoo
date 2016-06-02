@@ -86,8 +86,6 @@ class AuthController extends Controller
             $request->merge(['email' => $user->getAttribute('email')]);
         }
 
-        //dd($request->all());
-
         $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle

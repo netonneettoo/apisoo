@@ -23,6 +23,10 @@
         .fa-btn {
             margin-right: 6px;
         }
+        .navbar-brand img {
+            width: 100px;
+            margin-top: -7px;
+        }
     </style>
 </head>
 <body id="app-layout">
@@ -39,8 +43,8 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                <a class="navbar-brand logo" href="{{ url('/') }}">
+                    <img src="/images/logo-portal-aluno.png" alt="description" />
                 </a>
             </div>
 
