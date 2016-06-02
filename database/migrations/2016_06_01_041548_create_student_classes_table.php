@@ -16,6 +16,11 @@ class CreateStudentClassesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('discipline_class_id');
             $table->unsignedInteger('student_id');
+            $table->float('ap1', 3, 1)->nullable();
+            $table->float('ap2', 3, 1)->nullable();
+            $table->float('af', 3, 1)->nullable();
+            $table->float('m', 3, 1)->nullable();
+            $table->float('mf', 3, 1)->nullable();
             $table->timestamps();
 
             $table->foreign('discipline_class_id')->references('id')->on('discipline_classes');
