@@ -97,5 +97,7 @@ class DummyDataSeeder extends Seeder
             $DISCIPLINE_38, $DISCIPLINE_39, $DISCIPLINE_40, $DISCIPLINE_41]);
 
         \App\DisciplineClass::addHistoryToWalter($walterStudent);
+
+        \App\DisciplineClass::addAllDisciplineClasses();
     }
 }

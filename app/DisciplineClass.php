@@ -85,7 +85,7 @@ class DisciplineClass extends Model
                 'discipline_id' => $disciplineClass['id'],
                 'teacher_id' => $teachers[array_rand($teachers)]['id'],
                 'year' => 2016,
-                'half' => 2,
+                'half' => 1,
                 'day_of_week' => $day_of_week[array_rand($day_of_week)],
                 'rooms' => json_encode([]),
                 'max_students' => 40,
