@@ -18,8 +18,8 @@ class CreateStudentClassesTable extends Migration
             $table->unsignedInteger('student_id');
             $table->float('ap1', 3, 1)->nullable();
             $table->float('ap2', 3, 1)->nullable();
-            $table->float('af', 3, 1)->nullable();
             $table->float('m', 3, 1)->nullable();
+            $table->float('af', 3, 1)->nullable();
             $table->float('mf', 3, 1)->nullable();
             $table->timestamps();
 

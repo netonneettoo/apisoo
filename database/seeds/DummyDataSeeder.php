@@ -19,21 +19,22 @@ class DummyDataSeeder extends Seeder
         $walterUser = \App\User::create(['name' => 'José Walter de Souza Neto', 'email' => 'netonneettoo@gmail.com', 'password' => bcrypt('default')]);
         $walterStudent = \App\Student::create(['user_id' => $walterUser->getAttribute('id'), 'registration' => 2012207180, 'status' => 'active']);
 
-        $testUser = \App\User::create(['name' => 'Test User', 'email' => 'jw_netoa@hotmail.com', 'password' => bcrypt($passDefault)]);
-        $testStudent = \App\Student::create(['user_id' => $testUser->getAttribute('id'), 'registration' => rand($registrationMin, $registrationMin + 99999), 'status' => 'active']);
+//        $testUser = \App\User::create(['name' => 'Test User', 'email' => 'jw_netoa@hotmail.com', 'password' => bcrypt($passDefault)]);
+//        $testStudent = \App\Student::create(['user_id' => $testUser->getAttribute('id'), 'registration' => rand($registrationMin, $registrationMin + 99999), 'status' => 'active']);
 
         $alexandreUser = \App\User::create(['name' => 'Alexandre Vieira', 'email' => 'alexandre@facevol.com.br', 'password' => bcrypt($passDefault)]);
         $alexandreTeacher = \App\Teacher::create(['user_id' => $alexandreUser->getAttribute('id'), 'cpf' => '000.000.000-00', 'status' => 'active']);
-
         $sergianaUser = \App\User::create(['name' => 'Sergiana Freitas', 'email' => 'sergiana@facevol.com.br', 'password' => bcrypt($passDefault)]);
         $sergianaTeacher = \App\Teacher::create(['user_id' => $sergianaUser->getAttribute('id'), 'cpf' => '111.111.111-11', 'status' => 'active']);
+        $keteUser = \App\User::create(['name' => 'Kete Martins', 'email' => 'kete@facevol.com.br', 'password' => bcrypt($passDefault)]);
+        $keteTeacher = \App\Teacher::create(['user_id' => $keteUser->getAttribute('id'), 'cpf' => '222.222.222-22', 'status' => 'active']);
 
         $administration = \App\Course::create(['description' => 'Administração', 'status' => 'active']);
         $systemsForInternet = \App\Course::create(['description' => 'Sistemas para Internet', 'status' => 'active']);
         $networkOfComputers = \App\Course::create(['description' => 'Redes de Computadores', 'status' => 'active']);
 
         $walterStudent->addCourse($systemsForInternet);
-        $testStudent->addCourse($administration);
+//        $testStudent->addCourse($administration);
 
         // administração
         $DISCIPLINE_01 = \App\Discipline::create(['description' => 'Redação Técnica e Empresarial', 'requirements' => json_encode([]), 'status' => 'active']);
@@ -171,7 +172,7 @@ class DummyDataSeeder extends Seeder
 //        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'friday', 40, [$DISCIPLINE_05, $DISCIPLINE_15, $DISCIPLINE_25,
 //            $DISCIPLINE_35, $DISCIPLINE_45, $DISCIPLINE_54, $DISCIPLINE_64, $DISCIPLINE_77, $DISCIPLINE_78, $DISCIPLINE_79]);
 
-        \App\DisciplineClass::addHistoryWalter();
+        \App\DisciplineClass::addHistoryToWalter($walterStudent);
 
         // discipline classes (all)
         \App\DisciplineClass::addAllDisciplineClasses();
