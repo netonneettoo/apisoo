@@ -42,7 +42,7 @@
 
                     <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email" class="control-label">Matrícula</label>
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                        <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}">
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
