@@ -12,4 +12,28 @@ class Student extends Model
             'course_id' => $course->getAttribute('id'),
         ]);
     }
+
+    public function addStudentClasses(array $disciplineClasses) {
+        foreach ($disciplineClasses as $disciplineClass) {
+            $ap1 = rand(7.0, 10.0);
+            $ap2 = rand(7.0, 10.0);
+            $m = ($ap1 + $ap2) / 2;
+            if ($this->getAttribute('registration') == 2012207180 || $this->getAttribute('registration') == 2012215117) {
+                $ap1 = $disciplineClass->getAttribute('discipline_id') == 18 ? 4.0 : rand(7.0, 10.0);
+                $ap2 = $disciplineClass->getAttribute('discipline_id') == 18 ? 2.0 : rand(7.0, 10.0);
+                $m = ($ap1 + $ap2) / 2;
+            }
+            StudentClass::create([
+                'discipline_class_id' => $disciplineClass->getAttribute('id'),
+                'student_id' => $this->getAttribute('id'),
+                'ap1' => $ap1,
+                'ap2' => $ap2,
+                'm' => $m,
+                'af' => null,
+                'mf' => null,
+                'approved' => $m >= 7.0,
+                'status' => 'completed'
+            ]);
+        }
+    }
 }
