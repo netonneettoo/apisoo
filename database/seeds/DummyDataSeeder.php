@@ -14,15 +14,19 @@ class DummyDataSeeder extends Seeder
         $half = 1;
         $year = date('Y');
         $registrationMin = intval($year . $half) * 100000;
+        $passDefault = 'senha123';
 
         $walterUser = \App\User::create(['name' => 'José Walter de Souza Neto', 'email' => 'netonneettoo@gmail.com', 'password' => bcrypt('default')]);
         $walterStudent = \App\Student::create(['user_id' => $walterUser->getAttribute('id'), 'registration' => 2012207180, 'status' => 'active']);
 
-        $testUser = \App\User::create(['name' => 'Test User', 'email' => 'jw_netoa@hotmail.com', 'password' => bcrypt('default')]);
+        $testUser = \App\User::create(['name' => 'Test User', 'email' => 'jw_netoa@hotmail.com', 'password' => bcrypt($passDefault)]);
         $testStudent = \App\Student::create(['user_id' => $testUser->getAttribute('id'), 'registration' => rand($registrationMin, $registrationMin + 99999), 'status' => 'active']);
 
-        $alexandreUser = \App\User::create(['name' => 'Alexandre', 'email' => 'alexandre@facevol.com.br', 'password' => bcrypt('default')]);
+        $alexandreUser = \App\User::create(['name' => 'Alexandre Vieira', 'email' => 'alexandre@facevol.com.br', 'password' => bcrypt($passDefault)]);
         $alexandreTeacher = \App\Teacher::create(['user_id' => $alexandreUser->getAttribute('id'), 'cpf' => '000.000.000-00', 'status' => 'active']);
+
+        $sergianaUser = \App\User::create(['name' => 'Sergiana Freitas', 'email' => 'sergiana@facevol.com.br', 'password' => bcrypt($passDefault)]);
+        $sergianaTeacher = \App\Teacher::create(['user_id' => $sergianaUser->getAttribute('id'), 'cpf' => '111.111.111-11', 'status' => 'active']);
 
         $administration = \App\Course::create(['description' => 'Administração', 'status' => 'active']);
         $systemsForInternet = \App\Course::create(['description' => 'Sistemas para Internet', 'status' => 'active']);
@@ -155,6 +159,16 @@ class DummyDataSeeder extends Seeder
             $DISCIPLINE_70, $DISCIPLINE_71, $DISCIPLINE_72, $DISCIPLINE_73, $DISCIPLINE_74, $DISCIPLINE_75, $DISCIPLINE_76,
             $DISCIPLINE_77, $DISCIPLINE_78, $DISCIPLINE_79, $DISCIPLINE_80]);
 
-        //
+        // discipline classes
+        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'monday', 40, [$DISCIPLINE_01, $DISCIPLINE_11, $DISCIPLINE_21,
+            $DISCIPLINE_31, $DISCIPLINE_41, $DISCIPLINE_50, $DISCIPLINE_60, $DISCIPLINE_65, $DISCIPLINE_66, $DISCIPLINE_67]);
+        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'tuesday', 40, [$DISCIPLINE_02, $DISCIPLINE_12, $DISCIPLINE_22,
+            $DISCIPLINE_32, $DISCIPLINE_42, $DISCIPLINE_51, $DISCIPLINE_61, $DISCIPLINE_68, $DISCIPLINE_69, $DISCIPLINE_70]);
+        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'wednesday', 40, [$DISCIPLINE_03, $DISCIPLINE_13, $DISCIPLINE_23,
+            $DISCIPLINE_33, $DISCIPLINE_43, $DISCIPLINE_52, $DISCIPLINE_62, $DISCIPLINE_71, $DISCIPLINE_72, $DISCIPLINE_73]);
+        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'thursday', 40, [$DISCIPLINE_04, $DISCIPLINE_14, $DISCIPLINE_24,
+            $DISCIPLINE_34, $DISCIPLINE_44, $DISCIPLINE_53, $DISCIPLINE_63, $DISCIPLINE_74, $DISCIPLINE_75, $DISCIPLINE_76]);
+        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'friday', 40, [$DISCIPLINE_05, $DISCIPLINE_15, $DISCIPLINE_25,
+            $DISCIPLINE_35, $DISCIPLINE_45, $DISCIPLINE_54, $DISCIPLINE_64, $DISCIPLINE_77, $DISCIPLINE_78, $DISCIPLINE_79]);
     }
 }
