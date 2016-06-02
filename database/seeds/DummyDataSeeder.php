@@ -28,6 +28,9 @@ class DummyDataSeeder extends Seeder
         $systemsForInternet = \App\Course::create(['description' => 'Sistemas para Internet', 'status' => 'active']);
         $networkOfComputers = \App\Course::create(['description' => 'Redes de Computadores', 'status' => 'active']);
 
+        $walterStudent->addCourse($systemsForInternet);
+        $testStudent->addCourse($administration);
+
         // administração
         $DISCIPLINE_01 = \App\Discipline::create(['description' => 'Redação Técnica e Empresarial', 'requirements' => json_encode([]), 'status' => 'active']);
         $DISCIPLINE_02 = \App\Discipline::create(['description' => 'Teoria Geral da Administração I', 'requirements' => json_encode([]), 'status' => 'active']);
