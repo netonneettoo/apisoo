@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    public function user() {
+        return $this->belongsTo('App\User')->first();
+    }
+
     public function addCourse(Course $course) {
         return StudentCourse::create([
             'user_id' => $this->getAttribute('id'),
