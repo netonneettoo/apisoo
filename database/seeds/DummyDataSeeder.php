@@ -96,21 +96,6 @@ class DummyDataSeeder extends Seeder
             $DISCIPLINE_31, $DISCIPLINE_32, $DISCIPLINE_33, $DISCIPLINE_34, $DISCIPLINE_35, $DISCIPLINE_36, $DISCIPLINE_37,
             $DISCIPLINE_38, $DISCIPLINE_39, $DISCIPLINE_40, $DISCIPLINE_41]);
 
-        // discipline classes
-//        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'monday', 40, [$DISCIPLINE_01, $DISCIPLINE_11, $DISCIPLINE_21,
-//            $DISCIPLINE_31, $DISCIPLINE_41, $DISCIPLINE_50, $DISCIPLINE_60, $DISCIPLINE_65, $DISCIPLINE_66, $DISCIPLINE_67]);
-//        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'tuesday', 40, [$DISCIPLINE_02, $DISCIPLINE_12, $DISCIPLINE_22,
-//            $DISCIPLINE_32, $DISCIPLINE_42, $DISCIPLINE_51, $DISCIPLINE_61, $DISCIPLINE_68, $DISCIPLINE_69, $DISCIPLINE_70]);
-//        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'wednesday', 40, [$DISCIPLINE_03, $DISCIPLINE_13, $DISCIPLINE_23,
-//            $DISCIPLINE_33, $DISCIPLINE_43, $DISCIPLINE_52, $DISCIPLINE_62, $DISCIPLINE_71, $DISCIPLINE_72, $DISCIPLINE_73]);
-//        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'thursday', 40, [$DISCIPLINE_04, $DISCIPLINE_14, $DISCIPLINE_24,
-//            $DISCIPLINE_34, $DISCIPLINE_44, $DISCIPLINE_53, $DISCIPLINE_63, $DISCIPLINE_74, $DISCIPLINE_75, $DISCIPLINE_76]);
-//        \App\DisciplineClass::addDisciplineClasses(2016, 2, 'friday', 40, [$DISCIPLINE_05, $DISCIPLINE_15, $DISCIPLINE_25,
-//            $DISCIPLINE_35, $DISCIPLINE_45, $DISCIPLINE_54, $DISCIPLINE_64, $DISCIPLINE_77, $DISCIPLINE_78, $DISCIPLINE_79]);
-
         \App\DisciplineClass::addHistoryToWalter($walterStudent);
-
-        // discipline classes (all)
-        //\App\DisciplineClass::addAllDisciplineClasses();
     }
 }
