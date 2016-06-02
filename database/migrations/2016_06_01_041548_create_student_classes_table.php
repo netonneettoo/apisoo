@@ -21,6 +21,8 @@ class CreateStudentClassesTable extends Migration
             $table->float('m', 3, 1)->nullable();
             $table->float('af', 3, 1)->nullable();
             $table->float('mf', 3, 1)->nullable();
+            $table->boolean('approved', true);
+            $table->enum('status', ['active', 'completed', 'inactive']);
             $table->timestamps();
 
             $table->foreign('discipline_class_id')->references('id')->on('discipline_classes');

@@ -56,8 +56,8 @@ class DisciplineClass extends Model
                     'status' => 'active'
                 ]);
 
-                $ap1 = rand(7.0, 10.0);
-                $ap2 = rand(7.0, 10.0);
+                $ap1 = $id == 18 ? 4.0 : rand(7.0, 10.0);
+                $ap2 = $id == 18 ? 2.0 : rand(7.0, 10.0);
                 $m = ($ap1 + $ap2) / 2;
 
                 StudentClass::create([
@@ -67,7 +67,9 @@ class DisciplineClass extends Model
                     'ap2' => $ap2,
                     'm' => $m,
                     'af' => null,
-                    'mf' => null
+                    'mf' => null,
+                    'approved' => $m >= 7.0,
+                    'status' => 'completed'
                 ]);
             }
         }
@@ -75,7 +77,7 @@ class DisciplineClass extends Model
 
     public static function addAllDisciplineClasses() {
         $teachers = Teacher::all()->toArray();
-        $disciplineClasses = Discipline::all()->toArray();
+        $disciplineClasses = Discipline::all()->shuffle()->toArray();
         $day_of_week = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
         $needsLaboratory = [true, false];
         foreach($disciplineClasses as $disciplineClass) {
