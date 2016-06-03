@@ -26,4 +26,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function registration20161()
+    {
+        return view('registration20161');
+    }
 }

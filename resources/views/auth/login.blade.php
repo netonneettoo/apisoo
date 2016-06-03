@@ -34,7 +34,7 @@
             <div id="loginFormBox" class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 
                 <div class="col-md-12 text-center">
-                    <img class="logo-portal-aluno" src="/images/logo-porta-aluno.png" alt="description">
+                    <img class="logo-portal-aluno" src="/images/logo-portal-aluno.png" alt="description">
                 </div>
 
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
