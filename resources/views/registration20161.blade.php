@@ -11,9 +11,7 @@
                 <div class="panel-body">
 
                     <div class="row">
-                        <div class="col-md-6"></div>
                         <div class="col-md-6">
-
                             <div class="form-group">
                                 <label for="monday">Segunda-Feira</label>
                                 <select name="monday" id="monday" class="form-control">
@@ -66,8 +64,8 @@
 
                         </div>
                     </div>
-
                 </div>
+                <div class="col-md-6"></div>
                 <div class="panel-footer text-right">
                     <button class="btn btn-sm btn-success">Salvar</button>
                 </div>
