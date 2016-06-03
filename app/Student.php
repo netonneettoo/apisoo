@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    public function studentClasses() {
+        return $this->hasMany('App\StudentClass');
+    }
+
     public function user() {
         return $this->belongsTo('App\User')->first();
     }

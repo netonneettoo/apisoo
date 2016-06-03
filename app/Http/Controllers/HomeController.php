@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Discipline;
+use App\DisciplineClass;
 use App\Http\Requests;
+use App\Student;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -29,6 +35,51 @@ class HomeController extends Controller
 
     public function registration20161()
     {
-        return view('registration20161');
+        $user = Auth::user();
+        $student = Student::find($user->getAttribute('id'));
+
+        $disciplineIds = array();
+        $disciplines = array();
+        foreach($student->studentClasses as $studentClass) {
+            if ($studentClass->getAttribute('status') == 'completed') {
+                if (intval($studentClass->getAttribute('approved'))) {
+                    if ($studentClass->getAttribute('discipline_class_id')) {
+                        $disciplineClass = DisciplineClass::find($studentClass->getAttribute('discipline_class_id'));
+                        array_push($disciplineIds, $disciplineClass->getAttribute('discipline_id'));
+                        array_push($disciplines, Discipline::find($disciplineClass->getAttribute('discipline_id')));
+                    }
+                }
+            }
+        }
+
+        $offeredClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active');
+        $offeredDisciplines = array();
+        $offeredDisciplineIds = array();
+        foreach($offeredClasses as $offeredClass) {
+            array_push($offeredDisciplineIds, $offeredClass->getAttribute('discipline_id'));
+            array_push($offeredDisciplines, Discipline::find($offeredClass->getAttribute('discipline_id')));
+        }
+
+        $showOfferedDisciplines = array();
+        $diffIds = array_diff($offeredDisciplineIds, $disciplineIds);
+        foreach($diffIds as $disciplineId) {
+            $discipline = Discipline::find($disciplineId);
+            $requirements = json_decode($discipline->getAttribute('requirements'));
+            $countRequirements = 0;
+            foreach($requirements as $requirement) {
+                if (in_array($requirement, $disciplineIds)) {
+                    $countRequirements++;
+                }
+            }
+            if ($countRequirements != count($requirements)) {
+                continue;
+            }
+            array_push($showOfferedDisciplines, $discipline);
+        }
+
+        //echo json_encode($showOfferedDisciplines);
+        //exit;
+
+        return view('registration20161', compact('showOfferedDisciplines'));
     }
 }

@@ -17,7 +17,7 @@ class CreateDisciplineClassesTable extends Migration
             $table->unsignedInteger('discipline_id');
             $table->unsignedInteger('teacher_id');
             $table->unsignedSmallInteger('year');
-            $table->enum('half', [1, 2]);
+            $table->unsignedInteger('half');
             $table->enum('day_of_week', ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']);
             $table->json('rooms');
             $table->unsignedInteger('max_students');
