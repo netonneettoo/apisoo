@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class DisciplineClass extends Model
 {
+    public function discipline() {
+        return $this->belongsTo('App\Discipline');
+    }
+
+    public function teacher() {
+        return $this->belongsTo('App\Teacher');
+    }
+
     public static function addDisciplineClass($year, $half, $day_of_week, $needsLaboratory, Discipline $discipline, Teacher $teacher) {
         return DisciplineClass::create([
             'discipline_id' => $discipline->getAttribute('id'),

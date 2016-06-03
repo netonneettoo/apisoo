@@ -9,7 +9,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Panel heading without title</div>
                 <div class="panel-body">
-                    Panel content
+                    @foreach($disciplineClasses as $disciplineClass)
+                        {!! $disciplineClass !!}
+                        <hr />
+                    @endforeach
                 </div>
                 <div class="panel-footer">
                     footer

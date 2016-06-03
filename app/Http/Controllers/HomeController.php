@@ -61,6 +61,7 @@ class HomeController extends Controller
         }
 
         $showOfferedDisciplines = array();
+        $showOfferedDisciplineIds = array();
         $diffIds = array_diff($offeredDisciplineIds, $disciplineIds);
         foreach($diffIds as $disciplineId) {
             $discipline = Discipline::find($disciplineId);
@@ -74,12 +75,15 @@ class HomeController extends Controller
             if ($countRequirements != count($requirements)) {
                 continue;
             }
+            array_push($showOfferedDisciplineIds, $disciplineId);
             array_push($showOfferedDisciplines, $discipline);
         }
 
-        //echo json_encode($showOfferedDisciplines);
+        $disciplineClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active')->whereIn('discipline_id', $showOfferedDisciplineIds);
+
+        //echo json_encode($disciplineClasses);
         //exit;
 
-        return view('registration20161', compact('showOfferedDisciplines'));
+        return view('registration20161', compact('disciplineClasses'));
     }
 }
