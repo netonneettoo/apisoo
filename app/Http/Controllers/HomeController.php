@@ -80,10 +80,16 @@ class HomeController extends Controller
         }
 
         $disciplineClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active')->whereIn('discipline_id', $showOfferedDisciplineIds);
+        $mondayList = $disciplineClasses->where('day_of_week', 'monday');
+        $tuesdayList = $disciplineClasses->where('day_of_week', 'tuesday');
+        $wednesdayList = $disciplineClasses->where('day_of_week', 'wednesday');
+        $thursdayList = $disciplineClasses->where('day_of_week', 'thursday');
+        $fridayList = $disciplineClasses->where('day_of_week', 'friday');
 
-        //echo json_encode($disciplineClasses);
-        //exit;
+//        echo json_encode($disciplineClasses);
+//        echo json_encode($mondayList);
+//        exit;
 
-        return view('registration20161', compact('disciplineClasses'));
+        return view('registration20161', compact('mondayList', 'tuesdayList', 'wednesdayList', 'thursdayList', 'fridayList'));
     }
 }
