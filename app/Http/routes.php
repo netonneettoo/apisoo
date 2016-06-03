@@ -15,4 +15,4 @@ Route::get('/', 'HomeController@index');
 
 Route::auth();
 
-Route::get('/registration', 'HomeController@registration20161');
+Route::get('/registration/{courseId?}', 'HomeController@registration20161');

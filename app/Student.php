@@ -14,9 +14,17 @@ class Student extends Model
         return $this->belongsTo('App\User')->first();
     }
 
+    public function studentCourses() {
+        return $this->hasMany('App\StudentCourse');
+    }
+
+    public function getCourseById($id) {
+        return Course::find($this->studentCourses->where('course_id', $id)->first()->getAttribute('id'));
+    }
+
     public function addCourse(Course $course) {
         return StudentCourse::create([
-            'user_id' => $this->getAttribute('id'),
+            'student_id' => $this->getAttribute('id'),
             'course_id' => $course->getAttribute('id'),
         ]);
     }

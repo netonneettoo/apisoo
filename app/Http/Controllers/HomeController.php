@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
+use App\CourseDiscipline;
 use App\Discipline;
 use App\DisciplineClass;
 use App\Http\Requests;
@@ -33,10 +35,22 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function registration20161()
+    public function registration20161($courseId = null)
     {
         $user = Auth::user();
         $student = Student::find($user->getAttribute('id'));
+
+        $studentCourses = $student->studentCourses;
+        $courses = array();
+        foreach ($studentCourses as $studentCourse) {
+            array_push($courses, $studentCourse->getAttribute('course_id'));
+        }
+
+        if ($courseId == null || !in_array($courseId, $courses)) {
+            return view('choose_course', compact('courses'));
+        }
+
+        $chosenCourse = Course::find($courseId);
 
         $disciplineIds = array();
         $disciplines = array();
@@ -75,8 +89,10 @@ class HomeController extends Controller
             if ($countRequirements != count($requirements)) {
                 continue;
             }
-            array_push($showOfferedDisciplineIds, $disciplineId);
-            array_push($showOfferedDisciplines, $discipline);
+            if (CourseDiscipline::all()->where('course_id', $chosenCourse->getAttribute('id'))->where('discipline_id', $disciplineId)->first() != null) {
+                array_push($showOfferedDisciplineIds, $disciplineId);
+                array_push($showOfferedDisciplines, $discipline);
+            }
         }
 
         $disciplineClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active')->whereIn('discipline_id', $showOfferedDisciplineIds);
@@ -90,6 +106,6 @@ class HomeController extends Controller
 //        echo json_encode($mondayList);
 //        exit;
 
-        return view('registration20161', compact('mondayList', 'tuesdayList', 'wednesdayList', 'thursdayList', 'fridayList'));
+        return view('registration20161', compact('mondayList', 'tuesdayList', 'wednesdayList', 'thursdayList', 'fridayList', 'chosenCourse'));
     }
 }

@@ -14,14 +14,14 @@ class CreateStudentCoursesTable extends Migration
     {
         Schema::create('student_courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('student_id');
             $table->unsignedInteger('course_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('course_id')->references('id')->on('courses');
 
-            $table->unique(['user_id', 'course_id']);
+            $table->unique(['student_id', 'course_id']);
         });
     }
 

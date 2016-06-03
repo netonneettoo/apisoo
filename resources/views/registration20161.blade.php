@@ -7,7 +7,7 @@
     <div class="row">
         <div class="container">
             <div class="panel panel-default">
-                <div class="panel-heading">Disciplinas ofertadas</div>
+                <div class="panel-heading">{!! $chosenCourse->description !!} - 2016.1</div>
                 <div class="panel-body">
 
                     <div class="row">
