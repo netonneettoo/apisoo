@@ -44,26 +44,26 @@ class DummyDataSeeder extends Seeder
         $discipline_05 = \App\Discipline::create(['description' => 'Matemática Aplicada à Computação', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
         $discipline_06 = \App\Discipline::create(['description' => 'Banco de Dados', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
         $discipline_07 = \App\Discipline::create(['description' => 'Metodologia do Trabalho Científico', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_08 = \App\Discipline::create(['description' => 'Sistemas Operacionais', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_09 = \App\Discipline::create(['description' => 'Linguagem de Programação Orientada a Objetos I', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_08 = \App\Discipline::create(['description' => 'Sistemas Operacionais', 'requirements' => json_encode([1]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_09 = \App\Discipline::create(['description' => 'Linguagem de Programação Orientada a Objetos I', 'requirements' => json_encode([2, 6]), 'workload' => $workload,  'status' => 'active']);
         $discipline_10 = \App\Discipline::create(['description' => 'Introdução aos Sistemas de Informação', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
         $discipline_11 = \App\Discipline::create(['description' => 'Inglês Técnico', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
         $discipline_12 = \App\Discipline::create(['description' => 'Engenharia de Software', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_13 = \App\Discipline::create(['description' => 'Linguagem de Programação Orientada a Objetos II', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_14 = \App\Discipline::create(['description' => 'Programação para Web I', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_13 = \App\Discipline::create(['description' => 'Linguagem de Programação Orientada a Objetos II', 'requirements' => json_encode([9]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_14 = \App\Discipline::create(['description' => 'Programação para Web I', 'requirements' => json_encode([2, 6]), 'workload' => $workload,  'status' => 'active']);
         $discipline_15 = \App\Discipline::create(['description' => 'Modelagem de Sistemas de Banco de Dados para Web', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
 //        Formação Parcial: Qualificação Profissional de Nível Tecnológico como Programador de Aplicações para a WEB
-        $discipline_16 = \App\Discipline::create(['description' => 'Arquiteturas WEB e Sistemas Distribuídos', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_17 = \App\Discipline::create(['description' => 'Desenvolvimento de Aplicações Para Dispositivos Móveis', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_18 = \App\Discipline::create(['description' => 'Análise, Projeto e Implementação de Sistemas Orientados a Objetos', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_19 = \App\Discipline::create(['description' => 'Programação para Web II', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_16 = \App\Discipline::create(['description' => 'Arquiteturas WEB e Sistemas Distribuídos', 'requirements' => json_encode([9, 13]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_17 = \App\Discipline::create(['description' => 'Desenvolvimento de Aplicações Para Dispositivos Móveis', 'requirements' => json_encode([9, 13]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_18 = \App\Discipline::create(['description' => 'Análise, Projeto e Implementação de Sistemas Orientados a Objetos', 'requirements' => json_encode([9, 13]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_19 = \App\Discipline::create(['description' => 'Programação para Web II', 'requirements' => json_encode([14]), 'workload' => $workload,  'status' => 'active']);
         $discipline_20 = \App\Discipline::create(['description' => 'Gerenciamento de Projetos', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
 //        Formação Parcial: Qualificação Profissional de Nível Tecnológico como Projetista de Aplicações para a WEB
-        $discipline_21 = \App\Discipline::create(['description' => 'Segurança e Auditoria de Sistemas na Web', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_22 = \App\Discipline::create(['description' => 'Arquitetura de Sistemas Web e Padrões de Projeto', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_23 = \App\Discipline::create(['description' => 'Web Services e Frameworks Para Aplicações Web', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_21 = \App\Discipline::create(['description' => 'Segurança e Auditoria de Sistemas na Web', 'requirements' => json_encode([3, 19]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_22 = \App\Discipline::create(['description' => 'Arquitetura de Sistemas Web e Padrões de Projeto', 'requirements' => json_encode([9, 13, 19]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_23 = \App\Discipline::create(['description' => 'Web Services e Frameworks Para Aplicações Web', 'requirements' => json_encode([9, 13, 19]), 'workload' => $workload,  'status' => 'active']);
         $discipline_24 = \App\Discipline::create(['description' => 'Gestão de Negócios e Empreendedorismo', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
-        $discipline_25 = \App\Discipline::create(['description' => 'Projeto Prático em Análise e Desenvolvimento Web', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
+        $discipline_25 = \App\Discipline::create(['description' => 'Projeto Prático em Análise e Desenvolvimento Web', 'requirements' => json_encode([9, 13, 19]), 'workload' => $workload,  'status' => 'active']);
 
         $systemsForInternet->addDisciplines([$discipline_01, $discipline_02, $discipline_03, $discipline_04, $discipline_05,
             $discipline_06, $discipline_07, $discipline_08, $discipline_09, $discipline_10, $discipline_11, $discipline_12,
