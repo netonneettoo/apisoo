@@ -55,6 +55,15 @@ class HomeController extends Controller
 
         $chosenCourse = Course::find($courseId);
 
+        $preRegistrationFromUser = PreRegistration::where('student_id', $student->id)
+            ->where('year', 2016)
+            ->where('half', 1)
+            ->where('status', 'pending')
+            ->get();
+        if (count($preRegistrationFromUser) > 0) {
+            return view('registration20161_only_view', compact('chosenCourse', 'preRegistrationFromUser'));
+        }
+
         $coursedDisciplines = array();
         $coursedDisciplinesIds = array();
         foreach($student->studentClasses as $studentClass) {
@@ -103,6 +112,9 @@ class HomeController extends Controller
             $return = ['code' => 200, 'message' => 'Sua pré-matrícula será analisada pela nossa equipe e em breve entraremos em contato. Obrigado!', 'data' => []];
             $dayOfWeeks = ['monday','tuesday','wednesday','thursday','friday'];
             foreach($dayOfWeeks as $day) {
+                if ($request->{$day} == "") {
+                    continue;
+                }
                 $pr = new PreRegistration();
                 $pr->course_id = intval($request->course_id);
                 $pr->student_id = $request->user()->student->id;
@@ -116,6 +128,7 @@ class HomeController extends Controller
                 } else {
                     $return['data'][$day] = $pr;
                 }
+
             }
             DB::commit();
             return $return;

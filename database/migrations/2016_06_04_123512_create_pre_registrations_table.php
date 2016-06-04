@@ -27,7 +27,7 @@ class CreatePreRegistrationsTable extends Migration
             $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('discipline_id')->references('id')->on('disciplines');
 
-            $table->unique(['course_id', 'student_id', 'discipline_id', 'year', 'half', 'day_of_week'], 'pre_registrations_cid_sid_did_unique');
+            $table->unique(['course_id', 'student_id', 'discipline_id', 'year', 'half'], 'pre_registrations_cid_sid_did_unique');
         });
     }
 

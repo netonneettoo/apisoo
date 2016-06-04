@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('styles')
+    <link rel="stylesheet" href="/plugins/jquery-confirm/jquery-confirm.min.css">
 @endsection
 
 @section('content')
@@ -90,11 +91,12 @@
 @endsection
 
 @section('scripts')
+    <script src="/plugins/jquery-confirm/jquery-confirm.min.js"></script>
     <script>
         $(document).ready(function() {
 
             var token = '{!! csrf_token() !!}';
-            var course_id = '<?php echo $chosenCourse->id; ?>';
+            var course_id = '{!! $chosenCourse->id !!}';
             var mondaySelectId = '#monday';
             var tuesdaySelectId = '#tuesday';
             var wednesdaySelectId = '#wednesday';
@@ -105,29 +107,54 @@
                 evt.preventDefault();
                 var $this = this;
                 $($this).attr('disabled', true);
+                var countFillDays = 0;
 
                 var dayOfWeekValue = function(id) {
+                    if ($(id).val() != "") {
+                        countFillDays++;
+                    }
                     return $(id).val();
                 };
+
+                var dataSend = {
+                    '_token': token,
+                    course_id: course_id,
+                    monday: dayOfWeekValue(mondaySelectId),
+                    tuesday: dayOfWeekValue(tuesdaySelectId),
+                    wednesday: dayOfWeekValue(wednesdaySelectId),
+                    thursday: dayOfWeekValue(thursdaySelectId),
+                    friday: dayOfWeekValue(fridaySelectId)
+                };
+
+                if (countFillDays < 3) {
+                    $.alert({
+                        title: 'Atenção:',
+                        content: 'Necessário escolher pelo menos 3 disciplinas!',
+                        confirmButton: 'Ok',
+                        confirmButtonClass: 'btn-success'
+                    });
+                    $($this).attr('disabled', false);
+                    return;
+                }
 
                 $.ajax({
                     method: "POST",
                     url: "/registration",
                     dataType: "json",
-                    data: {
-                        '_token': token,
-                        course_id: course_id,
-                        monday: dayOfWeekValue(mondaySelectId),
-                        tuesday: dayOfWeekValue(tuesdaySelectId),
-                        wednesday: dayOfWeekValue(wednesdaySelectId),
-                        thursday: dayOfWeekValue(thursdaySelectId),
-                        friday: dayOfWeekValue(fridaySelectId)
-                    }
+                    data: dataSend
                 }).success(function(data) {
-                    console.log(data);
+                    if (data.code == 200) {
+                        location.reload();
+                    } else {
+                        $.alert({
+                            title: 'Atenção:',
+                            content: 'Ocorreu um erro ao realizar sua pré-matrícula. Tente novamente mais tarde!',
+                            confirmButton: 'Ok',
+                            confirmButtonClass: 'btn-success'
+                        });
+                    }
                     $($this).attr('disabled', false);
                 }).error(function (data) {
-                    console.log(data);
                     $($this).attr('disabled', false);
                 });
 
