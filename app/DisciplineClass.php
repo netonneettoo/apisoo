@@ -18,6 +18,23 @@ class DisciplineClass extends Model
         return $this->hasMany('App\StudentClass');
     }
 
+    public function dayOfWeek() {
+        switch($this->day_of_week) {
+            case 'monday':
+                return 'Segunda-feira';
+            case 'tuesday':
+                return 'Terça-feira';
+            case 'wednesday':
+                return 'Quarta-feira';
+            case 'thursday':
+                return 'Quinta-feira';
+            case 'friday':
+                return 'Sexta-feira';
+            default:
+                return '...';
+        }
+    }
+
     public static function addDisciplineClass($year, $half, $day_of_week, $needsLaboratory, Discipline $discipline, Teacher $teacher) {
         return DisciplineClass::create([
             'discipline_id' => $discipline->getAttribute('id'),

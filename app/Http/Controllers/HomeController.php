@@ -108,6 +108,6 @@ class HomeController extends Controller
 //        echo json_encode($mondayList);
 //        exit;
 
-        return view('registration20161', compact('mondayList', 'tuesdayList', 'wednesdayList', 'thursdayList', 'fridayList', 'chosenCourse', 'studentClasses'));
+        return view('registration20161', compact('mondayList', 'tuesdayList', 'wednesdayList', 'thursdayList', 'fridayList', 'chosenCourse', 'studentClasses', 'disciplineClasses'));
     }
 }

@@ -3,17 +3,6 @@
 @section('styles')
 @endsection
 
-<?php
-//    //$disciplines = array();
-//    if (isset($studentClasses)) {
-//        foreach ($studentClasses as $studentClass) {
-//            array_push($disciplines, [
-//                'discipline' => \App\Discipline::find($studentClass->id),
-//                'approved' => $studentClass->approved
-//            ]);
-//        }
-//    }
-?>
 @section('content')
 
     <div class="container">
@@ -78,7 +67,8 @@
                 <div class="col-md-6">
                     @if(count($studentClasses) > 0)
                         <div class="form-group">
-                            <b>A seguir uma breve descrição do seu histórico.</b>
+                            {{--<b>Disciplinas cursadas.</b>--}}
+                            <b>Lista de disciplinas disponíveis em 2016.1.</b>
                         </div>
                         <table class="table table-striped table-condensed">
                             <thead>
@@ -88,13 +78,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($studentClasses as $studentClass)
-                                    @if($studentClass->approved && $studentClass->status == 'completed')
-                                        <tr>
-                                            <td>{!! $studentClass->disciplineClass->discipline->description !!}</td>
-                                            <td>{!! $studentClass->disciplineClass->year . '.' . $studentClass->disciplineClass->half !!}</td>
-                                        </tr>
-                                    @endif
+                                {{--@foreach($studentClasses as $studentClass)--}}
+                                    {{--@if($studentClass->approved && $studentClass->status == 'completed')--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{!! $studentClass->disciplineClass->discipline->description !!}</td>--}}
+                                            {{--<td>{!! $studentClass->disciplineClass->year . '.' . $studentClass->disciplineClass->half !!}</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endif--}}
+                                {{--@endforeach--}}
+
+                                @foreach($disciplineClasses as $disciplineClass)
+                                    <tr>
+                                        <td>{!! $disciplineClass->discipline->description !!}</td>
+                                        <td>{!! $disciplineClass->dayOfWeek() !!}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
