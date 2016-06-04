@@ -54,37 +54,43 @@ class HomeController extends Controller
 
         $chosenCourse = Course::find($courseId);
 
-        $disciplines = array();
-        $disciplineIds = array();
+        $coursedDisciplines = array();
+        $coursedDisciplinesIds = array();
         foreach($student->studentClasses as $studentClass) {
             if ($studentClass->status == 'completed') {
                 if (intval($studentClass->approved)) {
                     if ($studentClass->discipline_class_id) {
                         $disciplineClass = DisciplineClass::find($studentClass->discipline_class_id);
-                        array_push($disciplineIds, $disciplineClass->discipline_id);
-                        array_push($disciplines, Discipline::find($disciplineClass->discipline_id));
+                        array_push($coursedDisciplinesIds, $disciplineClass->discipline_id);
+                        array_push($coursedDisciplines, Discipline::find($disciplineClass->discipline_id));
                     }
                 }
             }
         }
 
-        $allDisciplineIds = array();
-        $allDisciplines = array();
+        $remainderDisciplines = array();
+        $remainderDisciplineIds = array();
         foreach (Discipline::all()->where('status', 'active') as $d) {
-            if (!in_array($d->id, $disciplineIds)) {
+            if (!in_array($d->id, $coursedDisciplinesIds)) {
                 if ($d->courseDisciplines->where('course_id', $chosenCourse->id)->first()) {
-                    //dd($d->);
-                    array_push($allDisciplines, $d);
-                    array_push($allDisciplineIds, $d->id);
+                    $requirements = json_decode($d->requirements);
+
+                    $continue = false;
+                    foreach($requirements as $requirement) {
+                        if (!in_array($requirement, $coursedDisciplinesIds)) {
+                            $continue = true;
+                        }
+                    }
+
+                    if ($continue) {
+                        continue;
+                    }
+
+                    array_push($remainderDisciplines, $d);
+                    array_push($remainderDisciplineIds, $d->id);
                 }
             }
         }
-
-
-
-        dd($allDisciplines);
-        dd($allDisciplineIds);
-
 
 //        $offeredClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active');
 //        $offeredDisciplines = array();
@@ -126,6 +132,6 @@ class HomeController extends Controller
 //        echo json_encode($mondayList);
 //        exit;
 
-        return view('registration20161', compact('chosenCourse', 'disciplineClasses'));
+        return view('registration20161', compact('chosenCourse', 'remainderDisciplines'));
     }
 }
