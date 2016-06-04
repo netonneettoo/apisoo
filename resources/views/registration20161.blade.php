@@ -60,7 +60,7 @@
                     </div>
                     <br/>
                     <div class="form-group text-right">
-                        <button class="btn btn-sm btn-primary">Salvar Informações</button>
+                        <button id="btnSaveInformations" class="btn btn-sm btn-primary">Salvar Informações</button>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -90,4 +90,48 @@
 @endsection
 
 @section('scripts')
+    <script>
+        $(document).ready(function() {
+
+            var token = '{!! csrf_token() !!}';
+            var course_id = '<?php echo $chosenCourse->id; ?>';
+            var mondaySelectId = '#monday';
+            var tuesdaySelectId = '#tuesday';
+            var wednesdaySelectId = '#wednesday';
+            var thursdaySelectId = '#thursday';
+            var fridaySelectId = '#friday';
+
+            $('#btnSaveInformations').click(function(evt) {
+                evt.preventDefault();
+                var $this = this;
+                $($this).attr('disabled', true);
+
+                var dayOfWeekValue = function(id) {
+                    return $(id).val();
+                };
+
+                $.ajax({
+                    method: "POST",
+                    url: "/registration",
+                    dataType: "json",
+                    data: {
+                        '_token': token,
+                        course_id: course_id,
+                        monday: dayOfWeekValue(mondaySelectId),
+                        tuesday: dayOfWeekValue(tuesdaySelectId),
+                        wednesday: dayOfWeekValue(wednesdaySelectId),
+                        thursday: dayOfWeekValue(thursdaySelectId),
+                        friday: dayOfWeekValue(fridaySelectId)
+                    }
+                }).success(function(data) {
+                    console.log(data);
+                    $($this).attr('disabled', false);
+                }).error(function (data) {
+                    console.log(data);
+                    $($this).attr('disabled', false);
+                });
+
+            });
+        });
+    </script>
 @endsection

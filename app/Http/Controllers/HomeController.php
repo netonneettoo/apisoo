@@ -7,6 +7,7 @@ use App\CourseDiscipline;
 use App\Discipline;
 use App\DisciplineClass;
 use App\Http\Requests;
+use App\PreRegistration;
 use App\Student;
 use App\User;
 use Illuminate\Http\Request;
@@ -94,5 +95,37 @@ class HomeController extends Controller
 //        exit;
 
         return view('registration20161', compact('chosenCourse', 'remainderDisciplines'));
+    }
+
+    public function postRegistration20161(Request $request) {
+        try {
+            DB::beginTransaction();
+            $return = ['code' => 200, 'message' => 'Sua pré-matrícula será analisada pela nossa equipe e em breve entraremos em contato. Obrigado!', 'data' => []];
+            $dayOfWeeks = ['monday','tuesday','wednesday','thursday','friday'];
+            foreach($dayOfWeeks as $day) {
+                $pr = new PreRegistration();
+                $pr->course_id = intval($request->course_id);
+                $pr->student_id = $request->user()->student->id;
+                $pr->discipline_id = intval($request->{$day});
+                $pr->year = 2016;
+                $pr->half = 1;
+                $pr->day_of_week = $day;
+                $pr->status = 'pending';
+                if (!$pr->save()) {
+                    throw new \Exception('Ocorreu um erro ao realizar sua pré-matrícula. Tente novamente!', 422);
+                } else {
+                    $return['data'][$day] = $pr;
+                }
+            }
+            DB::commit();
+            return $return;
+        } catch (\Exception $e) {
+            DB::rollback();
+            return [
+                'code' => $e->getCode(),
+                'message' => $e->getMessage()
+            ];
+        }
+
     }
 }

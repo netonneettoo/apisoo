@@ -25,6 +25,6 @@ class User extends Authenticatable
     ];
 
     public function student() {
-        return $this->hasOne('App\Student')->first();
+        return $this->hasOne('App\Student');
     }
 }
