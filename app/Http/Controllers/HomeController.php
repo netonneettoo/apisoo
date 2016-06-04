@@ -38,12 +38,14 @@ class HomeController extends Controller
     public function registration20161($courseId = null)
     {
         $user = Auth::user();
-        $student = Student::where('user_id', $user->getAttribute('id'))->first();
+        $student = Student::where('user_id', $user->id)->first();
 
         $studentCourses = $student->studentCourses;
         $courses = array();
         foreach ($studentCourses as $studentCourse) {
-            array_push($courses, $studentCourse->getAttribute('course_id'));
+            if ($studentCourse->course->status == 'active') {
+                array_push($courses, $studentCourse->course->id);
+            }
         }
 
         if ($courseId == null || !in_array($courseId, $courses)) {
@@ -52,62 +54,78 @@ class HomeController extends Controller
 
         $chosenCourse = Course::find($courseId);
 
-        $disciplineIds = array();
         $disciplines = array();
+        $disciplineIds = array();
         foreach($student->studentClasses as $studentClass) {
-            if ($studentClass->getAttribute('status') == 'completed') {
-                if (intval($studentClass->getAttribute('approved'))) {
-                    if ($studentClass->getAttribute('discipline_class_id')) {
-                        $disciplineClass = DisciplineClass::find($studentClass->getAttribute('discipline_class_id'));
-                        array_push($disciplineIds, $disciplineClass->getAttribute('discipline_id'));
-                        array_push($disciplines, Discipline::find($disciplineClass->getAttribute('discipline_id')));
+            if ($studentClass->status == 'completed') {
+                if (intval($studentClass->approved)) {
+                    if ($studentClass->discipline_class_id) {
+                        $disciplineClass = DisciplineClass::find($studentClass->discipline_class_id);
+                        array_push($disciplineIds, $disciplineClass->discipline_id);
+                        array_push($disciplines, Discipline::find($disciplineClass->discipline_id));
                     }
                 }
             }
         }
 
-        $offeredClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active');
-        $offeredDisciplines = array();
-        $offeredDisciplineIds = array();
-        foreach($offeredClasses as $offeredClass) {
-            array_push($offeredDisciplineIds, $offeredClass->getAttribute('discipline_id'));
-            array_push($offeredDisciplines, Discipline::find($offeredClass->getAttribute('discipline_id')));
-        }
-
-        $showOfferedDisciplines = array();
-        $showOfferedDisciplineIds = array();
-        $diffIds = array_diff($offeredDisciplineIds, $disciplineIds);
-        foreach($diffIds as $disciplineId) {
-            $discipline = Discipline::find($disciplineId);
-            $requirements = json_decode($discipline->getAttribute('requirements'));
-            $countRequirements = 0;
-            foreach($requirements as $requirement) {
-                if (in_array($requirement, $disciplineIds)) {
-                    $countRequirements++;
+        $allDisciplineIds = array();
+        $allDisciplines = array();
+        foreach (Discipline::all()->where('status', 'active') as $d) {
+            if (!in_array($d->id, $disciplineIds)) {
+                if ($d->courseDisciplines->where('course_id', $chosenCourse->id)->first()) {
+                    //dd($d->);
+                    array_push($allDisciplines, $d);
+                    array_push($allDisciplineIds, $d->id);
                 }
             }
-            if ($countRequirements != count($requirements)) {
-                continue;
-            }
-            if (CourseDiscipline::all()->where('course_id', $chosenCourse->getAttribute('id'))->where('discipline_id', $disciplineId)->first() != null) {
-                array_push($showOfferedDisciplineIds, $disciplineId);
-                array_push($showOfferedDisciplines, $discipline);
-            }
         }
 
-        $disciplineClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active')->whereIn('discipline_id', $showOfferedDisciplineIds);
-        $mondayList = $disciplineClasses->where('day_of_week', 'monday');
-        $tuesdayList = $disciplineClasses->where('day_of_week', 'tuesday');
-        $wednesdayList = $disciplineClasses->where('day_of_week', 'wednesday');
-        $thursdayList = $disciplineClasses->where('day_of_week', 'thursday');
-        $fridayList = $disciplineClasses->where('day_of_week', 'friday');
 
-        $studentClasses = $student->studentClasses;
+
+        dd($allDisciplines);
+        dd($allDisciplineIds);
+
+
+//        $offeredClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active');
+//        $offeredDisciplines = array();
+//        $offeredDisciplineIds = array();
+//        foreach($offeredClasses as $offeredClass) {
+//            array_push($offeredDisciplineIds, $offeredClass->getAttribute('discipline_id'));
+//            array_push($offeredDisciplines, Discipline::find($offeredClass->getAttribute('discipline_id')));
+//        }
+//
+//        $showOfferedDisciplines = array();
+//        $showOfferedDisciplineIds = array();
+//        $diffIds = array_diff($offeredDisciplineIds, $disciplineIds);
+//        foreach($diffIds as $disciplineId) {
+//            $discipline = Discipline::find($disciplineId);
+//            $requirements = json_decode($discipline->getAttribute('requirements'));
+//            $countRequirements = 0;
+//            foreach($requirements as $requirement) {
+//                if (in_array($requirement, $disciplineIds)) {
+//                    $countRequirements++;
+//                }
+//            }
+//            if ($countRequirements != count($requirements)) {
+//                continue;
+//            }
+//            if (CourseDiscipline::all()->where('course_id', $chosenCourse->getAttribute('id'))->where('discipline_id', $disciplineId)->first() != null) {
+//                array_push($showOfferedDisciplineIds, $disciplineId);
+//                array_push($showOfferedDisciplines, $discipline);
+//            }
+//        }
+
+//        $disciplineClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active')->whereIn('discipline_id', $showOfferedDisciplineIds);
+//        $mondayList = $disciplineClasses->where('day_of_week', 'monday');
+//        $tuesdayList = $disciplineClasses->where('day_of_week', 'tuesday');
+//        $wednesdayList = $disciplineClasses->where('day_of_week', 'wednesday');
+//        $thursdayList = $disciplineClasses->where('day_of_week', 'thursday');
+//        $fridayList = $disciplineClasses->where('day_of_week', 'friday');
 
 //        echo json_encode($disciplineClasses);
 //        echo json_encode($mondayList);
 //        exit;
 
-        return view('registration20161', compact('mondayList', 'tuesdayList', 'wednesdayList', 'thursdayList', 'fridayList', 'chosenCourse', 'studentClasses', 'disciplineClasses'));
+        return view('registration20161', compact('chosenCourse', 'disciplineClasses'));
     }
 }

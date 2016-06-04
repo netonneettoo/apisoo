@@ -65,16 +65,16 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    @if(count($studentClasses) > 0)
+                    @if($disciplineClasses->count() > 0)
                         <div class="form-group">
                             {{--<b>Disciplinas cursadas.</b>--}}
-                            <b>Lista de disciplinas disponíveis em 2016.1.</b>
+                            <b>Sua lista de disciplinas a serem cursadas.</b>
                         </div>
                         <table class="table table-striped table-condensed">
                             <thead>
                                 <tr>
                                     <th>Disciplina</th>
-                                    <th>Semestre</th>
+                                    <th>Dia da Semana</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,7 +86,6 @@
                                         {{--</tr>--}}
                                     {{--@endif--}}
                                 {{--@endforeach--}}
-
                                 @foreach($disciplineClasses as $disciplineClass)
                                     <tr>
                                         <td>{!! $disciplineClass->discipline->description !!}</td>

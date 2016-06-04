@@ -148,6 +148,6 @@ class DummyDataSeeder extends Seeder
 
         //\App\DisciplineClass::addDisciplineClass(2016, 1, $dayOfWeeks[array_rand($dayOfWeeks)], $needsLaboratory[array_rand($needsLaboratory)], $discipline_01, $teachers[array_rand($teachers)]);
 
-        \App\DisciplineClass::addAllDisciplineClasses();
+        //\App\DisciplineClass::addAllDisciplineClasses();
     }
 }
