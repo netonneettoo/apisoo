@@ -74,59 +74,20 @@ class HomeController extends Controller
             if (!in_array($d->id, $coursedDisciplinesIds)) {
                 if ($d->courseDisciplines->where('course_id', $chosenCourse->id)->first()) {
                     $requirements = json_decode($d->requirements);
-
                     $continue = false;
                     foreach($requirements as $requirement) {
                         if (!in_array($requirement, $coursedDisciplinesIds)) {
                             $continue = true;
                         }
                     }
-
                     if ($continue) {
                         continue;
                     }
-
                     array_push($remainderDisciplines, $d);
                     array_push($remainderDisciplineIds, $d->id);
                 }
             }
         }
-
-//        $offeredClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active');
-//        $offeredDisciplines = array();
-//        $offeredDisciplineIds = array();
-//        foreach($offeredClasses as $offeredClass) {
-//            array_push($offeredDisciplineIds, $offeredClass->getAttribute('discipline_id'));
-//            array_push($offeredDisciplines, Discipline::find($offeredClass->getAttribute('discipline_id')));
-//        }
-//
-//        $showOfferedDisciplines = array();
-//        $showOfferedDisciplineIds = array();
-//        $diffIds = array_diff($offeredDisciplineIds, $disciplineIds);
-//        foreach($diffIds as $disciplineId) {
-//            $discipline = Discipline::find($disciplineId);
-//            $requirements = json_decode($discipline->getAttribute('requirements'));
-//            $countRequirements = 0;
-//            foreach($requirements as $requirement) {
-//                if (in_array($requirement, $disciplineIds)) {
-//                    $countRequirements++;
-//                }
-//            }
-//            if ($countRequirements != count($requirements)) {
-//                continue;
-//            }
-//            if (CourseDiscipline::all()->where('course_id', $chosenCourse->getAttribute('id'))->where('discipline_id', $disciplineId)->first() != null) {
-//                array_push($showOfferedDisciplineIds, $disciplineId);
-//                array_push($showOfferedDisciplines, $discipline);
-//            }
-//        }
-
-//        $disciplineClasses = DisciplineClass::all()->where('year', 2016)->where('half', 1)->where('status', 'active')->whereIn('discipline_id', $showOfferedDisciplineIds);
-//        $mondayList = $disciplineClasses->where('day_of_week', 'monday');
-//        $tuesdayList = $disciplineClasses->where('day_of_week', 'tuesday');
-//        $wednesdayList = $disciplineClasses->where('day_of_week', 'wednesday');
-//        $thursdayList = $disciplineClasses->where('day_of_week', 'thursday');
-//        $fridayList = $disciplineClasses->where('day_of_week', 'friday');
 
 //        echo json_encode($disciplineClasses);
 //        echo json_encode($mondayList);

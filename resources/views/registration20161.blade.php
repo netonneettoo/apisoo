@@ -66,12 +66,12 @@
                 <div class="col-md-6">
                     @if(count($remainderDisciplines) > 0)
                         <div class="form-group">
-                            <b>Lista completa de disciplinas a serem cursadas.</b>
+                            <b>Lista completa de disciplinas disponíveis.</b>
                         </div>
                         <table class="table table-striped table-condensed">
                             <thead>
                                 <tr>
-                                    <th>Disciplina</th>
+                                    <th>Descrição da Disciplina</th>
                                 </tr>
                             </thead>
                             <tbody>
