@@ -38,7 +38,7 @@ class HomeController extends Controller
     public function registration20161($courseId = null)
     {
         $user = Auth::user();
-        $student = Student::find($user->getAttribute('id'));
+        $student = Student::where('user_id', $user->getAttribute('id'))->first();
 
         $studentCourses = $student->studentCourses;
         $courses = array();
@@ -102,10 +102,12 @@ class HomeController extends Controller
         $thursdayList = $disciplineClasses->where('day_of_week', 'thursday');
         $fridayList = $disciplineClasses->where('day_of_week', 'friday');
 
+        $studentClasses = $student->studentClasses;
+
 //        echo json_encode($disciplineClasses);
 //        echo json_encode($mondayList);
 //        exit;
 
-        return view('registration20161', compact('mondayList', 'tuesdayList', 'wednesdayList', 'thursdayList', 'fridayList', 'chosenCourse'));
+        return view('registration20161', compact('mondayList', 'tuesdayList', 'wednesdayList', 'thursdayList', 'fridayList', 'chosenCourse', 'studentClasses'));
     }
 }

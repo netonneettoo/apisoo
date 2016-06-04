@@ -14,6 +14,10 @@ class DisciplineClass extends Model
         return $this->belongsTo('App\Teacher');
     }
 
+    public function studentClass() {
+        return $this->hasMany('App\StudentClass');
+    }
+
     public static function addDisciplineClass($year, $half, $day_of_week, $needsLaboratory, Discipline $discipline, Teacher $teacher) {
         return DisciplineClass::create([
             'discipline_id' => $discipline->getAttribute('id'),
