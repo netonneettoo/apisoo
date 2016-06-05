@@ -162,8 +162,5 @@ class DummyDataSeeder extends Seeder
             $dc_2013_1_08, $dc_2013_2_04, $dc_2013_2_14, $dc_2013_2_15, $dc_2014_1_09, $dc_2014_1_12, $dc_2014_1_17,
             $dc_2014_2_07, $dc_2014_2_11, $dc_2014_2_13, $dc_2015_1_10, $dc_2015_1_16, $dc_2015_1_19, $dc_2015_2_21,
             $dc_2015_2_22, $dc_2015_2_23]);
-
-//        2014.1 fiz Disp. Móveis(Não fiz projeto - reprovei), qualquer coisa Walter, tira ele, pois fica em duplicidade.
-
     }
 }
