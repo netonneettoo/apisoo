@@ -11,9 +11,26 @@
             <div class="panel-body">
                 <div class="col-md-12">
                     <div class="form-group">
-                        @foreach($preRegistrationFromUser as $item)
-                            {!! $item !!}
-                        @endforeach
+                        <table class="table table-striped table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Semestre</th>
+                                <th>Curso</th>
+                                <th>Disciplina</th>
+                                <th>Dia</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($preRegistrationFromUser as $item)
+                                <tr>
+                                    <td>{!! $item->year . '.' . $item->half !!}</td>
+                                    <td>{!! $item->course->description !!}</td>
+                                    <td>{!! $item->discipline->description !!}</td>
+                                    <td>{!! $item->dayOfWeek() !!}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
