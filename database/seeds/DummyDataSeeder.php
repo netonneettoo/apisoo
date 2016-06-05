@@ -19,9 +19,12 @@ class DummyDataSeeder extends Seeder
 
         $walterUser = \App\User::create(['name' => 'José Walter de Souza Neto', 'email' => 'netonneettoo@gmail.com', 'password' => bcrypt('default')]);
         $walterStudent = \App\Student::create(['user_id' => $walterUser->getAttribute('id'), 'registration' => 2012207180, 'status' => 'active']);
-
         $gustavoUser = \App\User::create(['name' => 'Gustavo Martim de Sousa', 'email' => 'gul.sousa20@hotmail.com', 'password' => bcrypt('default')]);
         $gustavoStudent = \App\Student::create(['user_id' => $gustavoUser->getAttribute('id'), 'registration' => 2012215117, 'status' => 'active']);
+        $vitorUser = \App\User::create(['name' => 'Vitor Barros', 'email' => 'vrab46@gmail.com', 'password' => bcrypt('default')]);
+        $vitorStudent = \App\Student::create(['user_id' => $vitorUser->getAttribute('id'), 'registration' => 2012207181, 'status' => 'active']);
+        $pauloSergioUser = \App\User::create(['name' => 'Paulo Sérgio', 'email' => 'paulo.sergio.cv@hotmail.com', 'password' => bcrypt('default')]);
+        $pauloSergioStudent = \App\Student::create(['user_id' => $pauloSergioUser->getAttribute('id'), 'registration' => 201224142, 'status' => 'active']);
 
         $alexandreUser = \App\User::create(['name' => 'Alexandre Vieira', 'email' => 'alexandre@facevol.com.br', 'password' => bcrypt($passDefault)]);
         $alexandreTeacher = \App\Teacher::create(['user_id' => $alexandreUser->getAttribute('id'), 'cpf' => '000.000.000-00', 'status' => 'active']);
@@ -35,6 +38,8 @@ class DummyDataSeeder extends Seeder
 
         $walterStudent->addCourse($systemsForInternet);
         $gustavoStudent->addCourse($systemsForInternet);
+        $vitorStudent->addCourse($systemsForInternet);
+        $pauloSergioStudent->addCourse($systemsForInternet);
 
         // sistemas para internet
         $discipline_01 = \App\Discipline::create(['description' => 'Fundamentos de Computação e Arquitetura de Computadores', 'requirements' => json_encode([]), 'workload' => $workload,  'status' => 'active']);
@@ -114,27 +119,32 @@ class DummyDataSeeder extends Seeder
         $dc_2013_2_23 = \App\DisciplineClass::addDisciplineClass(2013, 2, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_23, $teachers->shuffle()->first()); //w
         $dc_2013_2_06 = \App\DisciplineClass::addDisciplineClass(2013, 2, $dayOfWeeks[0], $needsLaboratory[array_rand($needsLaboratory)], $discipline_06, $teachers->shuffle()->first()); //g
         $dc_2013_2_10 = \App\DisciplineClass::addDisciplineClass(2013, 2, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_10, $teachers->shuffle()->first()); //g
+        $dc_2013_2_15 = \App\DisciplineClass::addDisciplineClass(2013, 2, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_15, $teachers->shuffle()->first()); //v
 
         $dc_2014_1_12 = \App\DisciplineClass::addDisciplineClass(2014, 1, $dayOfWeeks[0], $needsLaboratory[array_rand($needsLaboratory)], $discipline_12, $teachers->shuffle()->first()); //w
         $dc_2014_1_09 = \App\DisciplineClass::addDisciplineClass(2014, 1, $dayOfWeeks[1], $needsLaboratory[array_rand($needsLaboratory)], $discipline_09, $teachers->shuffle()->first()); //w
         $dc_2014_1_15 = \App\DisciplineClass::addDisciplineClass(2014, 1, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_15, $teachers->shuffle()->first()); //w
         $dc_2014_1_04 = \App\DisciplineClass::addDisciplineClass(2014, 1, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_04, $teachers->shuffle()->first()); //g
+        $dc_2014_1_17 = \App\DisciplineClass::addDisciplineClass(2014, 1, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_17, $teachers->shuffle()->first()); //v
 
         $dc_2014_2_11 = \App\DisciplineClass::addDisciplineClass(2014, 2, $dayOfWeeks[0], $needsLaboratory[array_rand($needsLaboratory)], $discipline_11, $teachers->shuffle()->first()); //w
         $dc_2014_2_13 = \App\DisciplineClass::addDisciplineClass(2014, 2, $dayOfWeeks[1], $needsLaboratory[array_rand($needsLaboratory)], $discipline_13, $teachers->shuffle()->first()); //w
         $dc_2014_2_19 = \App\DisciplineClass::addDisciplineClass(2014, 2, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_19, $teachers->shuffle()->first()); //w
         $dc_2014_2_15 = \App\DisciplineClass::addDisciplineClass(2014, 2, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_15, $teachers->shuffle()->first()); //g
+        $dc_2014_2_07 = \App\DisciplineClass::addDisciplineClass(2014, 2, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_07, $teachers->shuffle()->first()); //v
 
         $dc_2015_1_17 = \App\DisciplineClass::addDisciplineClass(2015, 1, $dayOfWeeks[0], $needsLaboratory[array_rand($needsLaboratory)], $discipline_17, $teachers->shuffle()->first()); //w
         $dc_2015_1_10 = \App\DisciplineClass::addDisciplineClass(2015, 1, $dayOfWeeks[1], $needsLaboratory[array_rand($needsLaboratory)], $discipline_10, $teachers->shuffle()->first()); //w
         $dc_2015_1_07 = \App\DisciplineClass::addDisciplineClass(2015, 1, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_07, $teachers->shuffle()->first()); //w
         $dc_2015_1_19 = \App\DisciplineClass::addDisciplineClass(2015, 1, $dayOfWeeks[1], $needsLaboratory[array_rand($needsLaboratory)], $discipline_19, $teachers->shuffle()->first()); //g
         $dc_2015_1_20 = \App\DisciplineClass::addDisciplineClass(2015, 1, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_20, $teachers->shuffle()->first()); //g
+        $dc_2015_1_16 = \App\DisciplineClass::addDisciplineClass(2015, 1, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_16, $teachers->shuffle()->first()); //v
 
         $dc_2015_2_18 = \App\DisciplineClass::addDisciplineClass(2015, 2, $dayOfWeeks[0], $needsLaboratory[array_rand($needsLaboratory)], $discipline_18, $teachers->shuffle()->first()); //w
         $dc_2015_2_25 = \App\DisciplineClass::addDisciplineClass(2015, 2, $dayOfWeeks[1], $needsLaboratory[array_rand($needsLaboratory)], $discipline_25, $teachers->shuffle()->first()); //w
         $dc_2015_2_21 = \App\DisciplineClass::addDisciplineClass(2015, 2, $dayOfWeeks[2], $needsLaboratory[array_rand($needsLaboratory)], $discipline_21, $teachers->shuffle()->first()); //w
         $dc_2015_2_23 = \App\DisciplineClass::addDisciplineClass(2015, 2, $dayOfWeeks[1], $needsLaboratory[array_rand($needsLaboratory)], $discipline_23, $teachers->shuffle()->first()); //g
+        $dc_2015_2_22 = \App\DisciplineClass::addDisciplineClass(2015, 2, $dayOfWeeks[0], $needsLaboratory[array_rand($needsLaboratory)], $discipline_22, $teachers->shuffle()->first()); //v
 
         $walterStudent->addStudentClasses([$dc_2012_2_01, $dc_2012_2_05, $dc_2012_2_03, $dc_2013_1_06, $dc_2013_1_02,
             $dc_2013_1_08, $dc_2013_2_04, $dc_2013_2_14, $dc_2013_2_23, $dc_2014_1_12, $dc_2014_1_09, $dc_2014_1_15,
@@ -146,8 +156,12 @@ class DummyDataSeeder extends Seeder
             $dc_2014_2_11, $dc_2014_2_13, $dc_2014_2_15, $dc_2015_1_17, $dc_2015_1_19, $dc_2015_1_20, $dc_2015_2_18,
             $dc_2015_2_23, $dc_2015_2_21]);
 
-        //\App\DisciplineClass::addDisciplineClass(2016, 1, $dayOfWeeks[array_rand($dayOfWeeks)], $needsLaboratory[array_rand($needsLaboratory)], $discipline_01, $teachers[array_rand($teachers)]);
+        $vitorStudent->addStudentClasses([$dc_2012_2_01, $dc_2012_2_05, $dc_2012_2_03, $dc_2013_1_06, $dc_2013_1_02,
+            $dc_2013_1_08, $dc_2013_2_04, $dc_2013_2_14, $dc_2013_2_15, $dc_2014_1_09, $dc_2014_1_12, $dc_2014_1_17,
+            $dc_2014_2_07, $dc_2014_2_11, $dc_2014_2_13, $dc_2015_1_10, $dc_2015_1_16, $dc_2015_1_19, $dc_2015_2_21,
+            $dc_2015_2_22, $dc_2015_2_23]);
 
-        //\App\DisciplineClass::addAllDisciplineClasses();
+//        2014.1 fiz Disp. Móveis(Não fiz projeto - reprovei), qualquer coisa Walter, tira ele, pois fica em duplicidade.
+
     }
 }

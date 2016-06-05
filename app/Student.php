@@ -30,9 +30,14 @@ class Student extends Model
             $ap1 = rand(7.0, 10.0);
             $ap2 = rand(7.0, 10.0);
             $m = ($ap1 + $ap2) / 2;
-            if ($this->getAttribute('registration') == 2012207180 || $this->getAttribute('registration') == 2012215117) {
+            if ($this->getAttribute('registration') == 2012207180 || $this->getAttribute('registration') == 2012215117) { // walter, gustavo
                 $ap1 = $disciplineClass->getAttribute('discipline_id') == 18 ? 4.0 : rand(7.0, 10.0);
                 $ap2 = $disciplineClass->getAttribute('discipline_id') == 18 ? 2.0 : rand(7.0, 10.0);
+                $m = ($ap1 + $ap2) / 2;
+            }
+            if ($this->getAttribute('registration') == 2012207181) { // vitor
+                $ap1 = $disciplineClass->getAttribute('discipline_id') == 17 ? 9.0 : rand(7.0, 10.0);
+                $ap2 = $disciplineClass->getAttribute('discipline_id') == 17 ? 2.0 : rand(7.0, 10.0);
                 $m = ($ap1 + $ap2) / 2;
             }
             StudentClass::create([
