@@ -32,6 +32,8 @@ class DummyDataSeeder extends Seeder
         $sergianaTeacher = \App\Teacher::create(['user_id' => $sergianaUser->getAttribute('id'), 'cpf' => '111.111.111-11', 'status' => 'active']);
         $keteUser = \App\User::create(['name' => 'Kete Martins', 'email' => 'kete@facevol.com.br', 'password' => bcrypt($passDefault)]);
         $keteTeacher = \App\Teacher::create(['user_id' => $keteUser->getAttribute('id'), 'cpf' => '222.222.222-22', 'status' => 'active']);
+        $savioUser = \App\User::create(['name' => 'Sávio Miranda', 'email' => 'savio@facevol.com.br', 'password' => bcrypt($passDefault)]);
+        $savioTeacher = \App\Teacher::create(['user_id' => $savioUser->getAttribute('id'), 'cpf' => '333.333.333-33', 'status' => 'active']);
 
         $systemsForInternet = \App\Course::create(['description' => 'Sistemas para Internet', 'status' => 'active']);
         $networkOfComputers = \App\Course::create(['description' => 'Redes de Computadores', 'status' => 'active']);
