@@ -35,7 +35,7 @@ class Student extends Model
                 $ap2 = $disciplineClass->getAttribute('discipline_id') == 18 ? 2.0 : rand(7.0, 10.0);
                 $m = ($ap1 + $ap2) / 2;
             }
-            if ($this->getAttribute('registration') == 2012207181) { // vitor
+            if ($this->getAttribute('registration') == 2012207163) { // vitor
                 $ap1 = $disciplineClass->getAttribute('discipline_id') == 17 ? 9.0 : rand(7.0, 10.0);
                 $ap2 = $disciplineClass->getAttribute('discipline_id') == 17 ? 2.0 : rand(7.0, 10.0);
                 $m = ($ap1 + $ap2) / 2;

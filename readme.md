@@ -4,7 +4,7 @@
 ### Integrantes (peças boas)
 
 * José Walter de Souza Neto (2012207180)
-* Vitor Barros ()
+* Vitor Barros (2012207163)
 * Paulo Sérgio Vianna (201224142)
 * Gustavo Martim de Sousa (2012215117)
 
@@ -32,7 +32,7 @@ Fizemos apenas a parte que nos foi designada a fazer.
 
 > Auxiliar os alunos em suas matrículas.
 
-Todos sabemos que toda rematrícula é um pouco complicada, pois as disciplinas não possuem pré-requisitos.
+Todos sabemos que na faculdade a rematrícula é um pouco complicada, pois as disciplinas não possuem pré-requisitos.
 
 **Vantagens do sistema:**
 

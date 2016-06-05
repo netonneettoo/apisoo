@@ -22,7 +22,7 @@ class DummyDataSeeder extends Seeder
         $gustavoUser = \App\User::create(['name' => 'Gustavo Martim de Sousa', 'email' => 'gul.sousa20@hotmail.com', 'password' => bcrypt('default')]);
         $gustavoStudent = \App\Student::create(['user_id' => $gustavoUser->getAttribute('id'), 'registration' => 2012215117, 'status' => 'active']);
         $vitorUser = \App\User::create(['name' => 'Vitor Barros', 'email' => 'vrab46@gmail.com', 'password' => bcrypt('default')]);
-        $vitorStudent = \App\Student::create(['user_id' => $vitorUser->getAttribute('id'), 'registration' => 2012207181, 'status' => 'active']);
+        $vitorStudent = \App\Student::create(['user_id' => $vitorUser->getAttribute('id'), 'registration' => 2012207163, 'status' => 'active']);
         $pauloSergioUser = \App\User::create(['name' => 'Paulo Sérgio', 'email' => 'paulo.sergio.cv@hotmail.com', 'password' => bcrypt('default')]);
         $pauloSergioStudent = \App\Student::create(['user_id' => $pauloSergioUser->getAttribute('id'), 'registration' => 201224142, 'status' => 'active']);
 
