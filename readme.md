@@ -24,7 +24,7 @@
 
 ### Explicando um pouco sobre o projeto
 
-No início não sabíamos que essa seria fosse um pouco trabalhosa de fazer, mas aprendemos um pouco sobre a estrutura e/ou regras de negócio da uma faculdade.
+No início não sabíamos que esse tema fosse um pouco trabalhoso de fazer, mas aprendemos um pouco sobre a estrutura e/ou regras de negócio da uma faculdade.
 
 Não chegamos nem perto de finalizarmos o sistema completo.
 
