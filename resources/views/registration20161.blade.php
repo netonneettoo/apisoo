@@ -112,11 +112,11 @@
             var values = [];
 
             var test = function(id) {
-                $('select option').removeAttr('disabled');
+                $('select:not([id=' + id + ']) option').removeAttr('disabled');
                 values.forEach(function(value) {
                     $('select:not([id=' + id + '])').find('option[value=' + value + ']').attr('disabled', true);
                 });
-                //console.log(values);
+                console.log(values);
             };
 
             $(mondaySelectId).change(function(a) {
