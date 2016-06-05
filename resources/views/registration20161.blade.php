@@ -206,8 +206,8 @@
                 $.confirm({
                     title: 'Confirmação:',
                     content: 'Você deseja prosseguir e salvar as alterações?',
-                    cancelButton: 'Voltar',
-                    confirmButton: 'Ok',
+                    confirmButton: 'Sim',
+                    cancelButton: 'Não',
                     confirmButtonClass: 'btn-success',
                     cancelButtonClass: 'btn-danger',
                     confirm: function() {
