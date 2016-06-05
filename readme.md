@@ -10,5 +10,7 @@
 |                    | teachers           |
 |                    | discipline_classes |
 |                    | student_classes    |
+|                    | student_courses    |
+|                    | pre_registrations  |
 
-//  
+//
