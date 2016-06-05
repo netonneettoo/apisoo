@@ -11,7 +11,9 @@
             <div class="panel-body">
                 <div class="col-md-12">
                     <div class="form-group">
-                        {!! $preRegistrationFromUser !!}
+                        @foreach($preRegistrationFromUser as $item)
+                            {!! $item !!}
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -23,9 +25,4 @@
 @endsection
 
 @section('scripts')
-    <script>
-        $(document).ready(function() {
-            //
-        });
-    </script>
 @endsection

@@ -173,26 +173,18 @@
                 evt.preventDefault();
                 var $this = this;
                 $($this).attr('disabled', true);
-                var countFillDays = 0;
-
-                var dayOfWeekValue = function(id) {
-                    if ($(id).val() != "") {
-                        countFillDays++;
-                    }
-                    return $(id).val();
-                };
 
                 var dataSend = {
                     '_token': token,
                     course_id: course_id,
-                    monday: dayOfWeekValue(mondaySelectId),
-                    tuesday: dayOfWeekValue(tuesdaySelectId),
-                    wednesday: dayOfWeekValue(wednesdaySelectId),
-                    thursday: dayOfWeekValue(thursdaySelectId),
-                    friday: dayOfWeekValue(fridaySelectId)
+                    monday: mondayValue > 0 ? mondayValue : '',
+                    tuesday: tuesdayValue > 0 ? tuesdayValue : '',
+                    wednesday: wednesdayValue > 0 ? wednesdayValue : '',
+                    thursday: thursdayValue > 0 ? thursdayValue : '',
+                    friday: fridayValue > 0 ? fridayValue : ''
                 };
 
-                if (countFillDays < 3) {
+                if ([mondayValue, tuesdayValue, wednesdayValue, thursdayValue, fridayValue].filter(function(v) { return v > 0 } ) < 3) {
                     $.alert({
                         title: 'Atenção:',
                         content: 'Necessário escolher pelo menos 3 disciplinas!',
