@@ -103,6 +103,72 @@
             var thursdaySelectId = '#thursday';
             var fridaySelectId = '#friday';
 
+            var mondayValue = -1;
+            var tuesdayValue = -1;
+            var wednesdayValue = -1;
+            var thursdayValue = -1;
+            var fridayValue = -1;
+
+            var values = [];
+
+            var test = function(id) {
+                $('select option').removeAttr('disabled');
+                values.forEach(function(value) {
+                    $('select:not([id=' + id + '])').find('option[value=' + value + ']').attr('disabled', true);
+                });
+                //console.log(values);
+            };
+
+            $(mondaySelectId).change(function(a) {
+                var index = values.indexOf(mondayValue);
+                if (index > -1) {
+                    values.splice(index, 1);
+                }
+                mondayValue = $(a.target).val().length > 0 ? $(a.target).val() : 0;
+                values.push(mondayValue);
+                test(this.id);
+            });
+
+            $(tuesdaySelectId).change(function(a) {
+                var index = values.indexOf(tuesdayValue);
+                if (index > -1) {
+                    values.splice(index, 1);
+                }
+                tuesdayValue = $(a.target).val().length > 0 ? $(a.target).val() : 0;
+                values.push(tuesdayValue);
+                test(this.id);
+            });
+
+            $(wednesdaySelectId).change(function(a) {
+                var index = values.indexOf(wednesdayValue);
+                if (index > -1) {
+                    values.splice(index, 1);
+                }
+                wednesdayValue = $(a.target).val().length > 0 ? $(a.target).val() : 0;
+                values.push(wednesdayValue);
+                test(this.id);
+            });
+
+            $(thursdaySelectId).change(function(a) {
+                var index = values.indexOf(thursdayValue);
+                if (index > -1) {
+                    values.splice(index, 1);
+                }
+                thursdayValue = $(a.target).val().length > 0 ? $(a.target).val() : 0;
+                values.push(thursdayValue);
+                test(this.id);
+            });
+
+            $(fridaySelectId).change(function(a) {
+                var index = values.indexOf(fridayValue);
+                if (index > -1) {
+                    values.splice(index, 1);
+                }
+                fridayValue = $(a.target).val().length > 0 ? $(a.target).val() : 0;
+                values.push(fridayValue);
+                test(this.id);
+            });
+
             $('#btnSaveInformations').click(function(evt) {
                 evt.preventDefault();
                 var $this = this;
@@ -137,27 +203,39 @@
                     return;
                 }
 
-                $.ajax({
-                    method: "POST",
-                    url: "/registration",
-                    dataType: "json",
-                    data: dataSend
-                }).success(function(data) {
-                    if (data.code == 200) {
-                        location.reload();
-                    } else {
-                        $.alert({
-                            title: 'Atenção:',
-                            content: 'Ocorreu um erro ao realizar sua pré-matrícula. Tente novamente mais tarde!',
-                            confirmButton: 'Ok',
-                            confirmButtonClass: 'btn-success'
+                $.confirm({
+                    title: 'Confirmação:',
+                    content: 'Você deseja prosseguir e salvar as alterações?',
+                    cancelButton: 'Voltar',
+                    confirmButton: 'Ok',
+                    confirmButtonClass: 'btn-success',
+                    cancelButtonClass: 'btn-danger',
+                    confirm: function() {
+                        $.ajax({
+                            method: "POST",
+                            url: "/registration",
+                            dataType: "json",
+                            data: dataSend
+                        }).success(function(data) {
+                            if (data.code == 200) {
+                                location.reload();
+                            } else {
+                                $.alert({
+                                    title: 'Atenção:',
+                                    content: 'Ocorreu um erro ao realizar sua pré-matrícula. Tente novamente mais tarde!',
+                                    confirmButton: 'Ok',
+                                    confirmButtonClass: 'btn-success'
+                                });
+                            }
+                            $($this).attr('disabled', false);
+                        }).error(function (data) {
+                            $($this).attr('disabled', false);
                         });
+                    },
+                    cancel: function() {
+                        $($this).attr('disabled', false);
                     }
-                    $($this).attr('disabled', false);
-                }).error(function (data) {
-                    $($this).attr('disabled', false);
                 });
-
             });
         });
     </script>
