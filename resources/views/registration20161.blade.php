@@ -93,23 +93,24 @@
 @section('scripts')
     <script src="/plugins/jquery-confirm/jquery-confirm.min.js"></script>
     <script>
+
+        var token = '{!! csrf_token() !!}';
+        var course_id = '{!! $chosenCourse->id !!}';
+        var mondaySelectId = '#monday';
+        var tuesdaySelectId = '#tuesday';
+        var wednesdaySelectId = '#wednesday';
+        var thursdaySelectId = '#thursday';
+        var fridaySelectId = '#friday';
+
+        var mondayValue = -1;
+        var tuesdayValue = -1;
+        var wednesdayValue = -1;
+        var thursdayValue = -1;
+        var fridayValue = -1;
+
+        var values = [];
+
         $(document).ready(function() {
-
-            var token = '{!! csrf_token() !!}';
-            var course_id = '{!! $chosenCourse->id !!}';
-            var mondaySelectId = '#monday';
-            var tuesdaySelectId = '#tuesday';
-            var wednesdaySelectId = '#wednesday';
-            var thursdaySelectId = '#thursday';
-            var fridaySelectId = '#friday';
-
-            var mondayValue = -1;
-            var tuesdayValue = -1;
-            var wednesdayValue = -1;
-            var thursdayValue = -1;
-            var fridayValue = -1;
-
-            var values = [];
 
             var test = function(id) {
                 $('select:not([id=' + id + ']) option').removeAttr('disabled');
@@ -184,7 +185,7 @@
                     friday: fridayValue > 0 ? fridayValue : ''
                 };
 
-                if ([mondayValue, tuesdayValue, wednesdayValue, thursdayValue, fridayValue].filter(function(v) { return v > 0 } ) < 3) {
+                if ([mondayValue, tuesdayValue, wednesdayValue, thursdayValue, fridayValue].filter(function(v) { return v > 0 }).length < 3) {
                     $.alert({
                         title: 'Atenção:',
                         content: 'Necessário escolher pelo menos 3 disciplinas!',
