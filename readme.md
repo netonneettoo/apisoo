@@ -5,7 +5,7 @@
 
 * José Walter de Souza Neto (2012207180)
 * Vitor Barros (2012207163)
-* Paulo Sérgio Vianna (201224142)
+* Paulo Sérgio Viana (201224142)
 * Gustavo Martim de Sousa (2012215117)
 
 ### Estrutura do banco de dados (simplificada)

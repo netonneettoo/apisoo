@@ -93,6 +93,7 @@
 @section('scripts')
     <script src="/plugins/jquery-confirm/jquery-confirm.min.js"></script>
     <script>
+
         var token = '{!! csrf_token() !!}';
         var course_id = '{!! $chosenCourse->id !!}';
         var mondaySelectId = '#monday';
