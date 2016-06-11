@@ -169,8 +169,6 @@ class HomeController extends Controller
             }
         }
 
-//        dd($disciplines);
-
         return view('history', compact('studentClasses', 'disciplines'));
     }
 }

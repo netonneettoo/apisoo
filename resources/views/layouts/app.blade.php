@@ -50,6 +50,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/history') }}">Histórico</a></li>
                     <li><a href="{{ url('/registration') }}">Matrícula 2016.1</a></li>
                 </ul>
                 <!-- Right Side Of Navbar -->

@@ -55,9 +55,6 @@
                     </div>
                 </div>
             </div>
-            {{--<div class="panel-footer">--}}
-                {{--<i>Agora que você já fez sua pré-matrícula, basta aguardar que entraremos em contato com você o mais breve possível. Este é o resumo de sua pré-matrícula. Em caso de alterações, por gentileza, procure a coordenação. Agradecemos a compreensão.</i>--}}
-            {{--</div>--}}
         </div>
     </div>
 @endsection
