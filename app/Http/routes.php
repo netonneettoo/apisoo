@@ -17,3 +17,4 @@ Route::auth();
 
 Route::get('/registration/{courseId?}', 'HomeController@registration20161');
 Route::post('/registration', 'HomeController@postRegistration20161');
+Route::get('/history', 'HomeController@getHistory');

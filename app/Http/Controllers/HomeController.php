@@ -138,6 +138,39 @@ class HomeController extends Controller
                 'message' => $e->getMessage()
             ];
         }
+    }
 
+    public function getHistory() {
+
+        $user = Auth::user();
+
+        $completedDisciplines = array();
+        $studentClasses = $user->student->studentClasses->where('status', 'completed')->where('approved', 1);
+        foreach ($studentClasses as $studentClass) {
+            $studentClass->discipline_class = $studentClass->disciplineClass;
+            $studentClass->discipline_class->discipline = $studentClass->discipline_class->discipline;
+            $studentClass->discipline_class->teacher = $studentClass->discipline_class->teacher;
+            $studentClass->discipline_class->teacher->user = $studentClass->discipline_class->teacher->user;
+
+            $completedDisciplines[] = $studentClass->discipline_class->discipline->id;
+
+            unset($studentClass->discipline_class_id);
+            unset($studentClass->discipline_class->discipline_id);
+            unset($studentClass->discipline_class->teacher_id);
+            unset($studentClass->discipline_class->teacher->user_id);
+        }
+
+        $disciplines = array();
+        foreach (Discipline::all() as $item) {
+            if ($item->courseDisciplines->where('course_id', 1)->count() > 0) {
+                if (!in_array($item->id, $completedDisciplines)) {
+                    $disciplines[] = $item;
+                }
+            }
+        }
+
+//        dd($disciplines);
+
+        return view('history', compact('studentClasses', 'disciplines'));
     }
 }
